@@ -1,32 +1,54 @@
 body {
 	margin: 0;
+	/*background-color: #000000;*/
 	}
 
 * {
 	box-sizing: border-box;
 	}
+	
+a, p, span {
+	font-family: 'Raleway', sans-serif;
+	font-weight: lighter;
+	color: white;
+	}
+
+h1, h2, h3, h4, h5 {
+	font-family: 'Raleway', sans-serif;
+	font-weight: normal;
+	color: white;
+	}	
+
+div.background {
+	background: url('SK-A-4290 kopie 2.jpg') center/cover no-repeat;
+	}
 
 div.container {
-	border: .5px solid red;
+	border: .5px none red;
 	position: relative;
 	height: 100vh;
 	width: 100vw;
+	-webkit-backdrop-filter: blur(15px);
+	-moz-backdrop-filter: blur(15px);
+	-o-backdrop-filter: blur(15px);
+	-ms-backdrop-filter: blur(15px);
+	backdrop-filter: blur(15px);  
 	}
 
 div.container div.menu {
-	border: 1px solid orange;
+	border: 1px none orange;
 	display: inline-flex;
 	width: 100vw;
 	height: 70px;
 	top: 0;
+	background-color: #343537;
 	}
 
 div.menu div {
 	height: inherit;
 	width: 25vw;
-	border: 1px solid green;
+	border: 1px none green;
 	text-align: center;
-	height: inherit;
 	}
 
 div.menu div#name {
@@ -34,40 +56,135 @@ div.menu div#name {
 	}
 
 div.menu div p {
-	border: .5px solid blue;
+	border: .5px none blue;
 	height: 20px;
 	margin-top: 25px;
 	}
 
+div.menu div:first-child p {
+	color: white;
+	}
+
+div.container div.riddle {
+	position: relative;
+	width: 80vw;
+	left: 10vw;
+	min-height: 15vh;
+	border: .5px none brown;
+	margin-top: 10vh;
+	text-align: center;
+	background-color: #40474F;
+	border-radius: 5px;
+	padding-top: 2px;
+	}
+
 div.container div.solution {
 	position: relative;
-	border: .5px solid green;
+	border: .5px none green;
 	height: 50px;
 	width: 70vw;
 	left: 15vw;
-	top: 150px;
+	top: 50px;
 	border-radius: 5px;
+	background-color: rgba(255,255,255,0.8);
 	}
 
 div.solution div.entry {
 	width: 55vw;
 	height: inherit;
+	border-radius: 5px;
+	/* rbackground-color: rgba(255,255,255,0.8); */
 	}
 
 div.solution div.entry input {
 	position: absolute;
+	left: 2vw;
 	top: 5px;
 	height: 40px;
-	width: 54vw;
+	width: 52vw;
 	font-size: 20px;
-	border: .5px solid blue;
+	border: .5px none blue;
 	-webkit-appearance: none;
 	padding: 0 5px;
+	background-color: transparent;
 	}
 
 div.solution div.entry input:focus {
 	outline: none;
-	background-color: pink;
+	/* background-color: pink; */
+	}
+
+div.solution div.hint {
+	position: absolute;
+	width: 12vw;
+	right: 2vw;
+	height: 40px;
+	top: 5px;
+	border: .5px none orange;
+	background-color: #343537; 
+	border-radius: 3px;
+	}	
+
+div.solution div.hint svg {
+	position: absolute;
+	border: .5px none red;
+	width: inherit;
+	left: 0;
+	height: inherit;
+	cursor: pointer;
+	fill: lightgrey;
+	z-index: 2;
+	}
+
+div.solution div.submit {
+	display: none;
+	position: absolute;
+	width: 12vw;
+	right: 2vw;
+	height: 40px;
+	top: 5px;
+	border: .5px none orange;
+	/* background-color: #343537; */
+	border-radius: 3px;
+	}	
+
+div.solution div.submit svg {
+	position: absolute;
+	border: .5px none red;
+	width: inherit;
+	left: 0;
+	height: inherit;
+	cursor: pointer;
+	fill: #D55140;
+	color: white;
+	z-index: 2;
+	}	
+
+div.container div.word-container {
+	display: none;
+	position: absolute;
+	bottom: 0;
+	border: 1.5px solid lightblue;	
+	height: 85vh;
+	width: 100vw;
+	background-color: white;
+	z-index: 3;
+	}
+
+div.word-container div.final-word {
+	border: 1px solid green;
+	position: absolute;
+	bottom: 20vh;
+	width: 80vw;
+	left: 10vw;
+	height: 50px;
+	display: inline-flex;
+	}
+
+div.final-word div.letter {
+	height: inherit;
+	width: 20vw;
+	border: 1px solid purple;
 	}
 
 @media only screen and (min-width: 740px){
