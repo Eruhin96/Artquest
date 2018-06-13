@@ -32,4 +32,14 @@ $(document).ready(function(){
 			$('div.menu div#tally p').html($('div.solution div.entry input').val().length);
 			}
 		});
+
+	$('div.background.inactive div.list-view').click(function(){
+		$('div.background.inactive').removeClass('inactive');
+		$('div.container.hidden').removeClass('hidden');
+		$('div.background div.list-view').addClass('hidden');
+		});
+
+	$('div.menu div img').click(function(){
+		$('div.container div.word-container').toggleClass('visible');
+		});
 	});
