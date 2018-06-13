@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	/*background-color: #000000;*/
+	background-color: lightgrey;
 	}
 
 * {
@@ -56,16 +56,16 @@ div.menu div img {
 	}
 
 div.background {
-	border: .5px solid white;
-	background: url('SK-A-4290 kopie 2.jpg') center/cover no-repeat;
+	border: .5px none white;
+	background: center/cover no-repeat;
 	height: 100vh;
 	width: 100vw;
 	}
 
-div.background.inactive {
+div.background.list {
 	position: relative;
-	top: 40vh;
 	height: 10vh;
+	top: 30vh;
 	}
 
 div.container {
@@ -75,13 +75,13 @@ div.container {
 	top: 0;
 	height: inherit;
 	width: inherit;
-	/*
-	-webkit-backdrop-filter: blur(5px);
-	-moz-backdrop-filter: blur(5px);
-	-o-backdrop-filter: blur(5px);
-	-ms-backdrop-filter: blur(5px);
-	backdrop-filter: blur(5px);  
-	*/
+	
+	-webkit-backdrop-filter: blur(10px);
+	-moz-backdrop-filter: blur(10px);
+	-o-backdrop-filter: blur(10px);
+	-ms-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);  
+	
 	}
 
 div.container.hidden {
@@ -182,12 +182,11 @@ div.solution div.submit svg {
 	z-index: 2;
 	}	
 
-div.container div.word-container {
-	display: none;
-	position: absolute;
-	bottom: 0;
-	border: 1.5px none lightblue;	
-	height: 35vh;
+div.word-container {
+	position: fixed;
+	bottom: -50vh;
+	border: 1.5px none lightblue;
+	height: 45vh;
 	width: 100vw;
 	background-color: #40474F;
 	z-index: 3;
@@ -195,13 +194,17 @@ div.container div.word-container {
 	-webkit-box-shadow: 0px -10px 10px 5px rgba(0,0,0,0.25);
 	-moz-box-shadow: 0px -10px 10px 5px rgba(0,0,0,0.25);
 	box-shadow: 0px -10px 10px 5px rgba(0,0,0,0.25);
+	transition: bottom .4s;
 	}
-div.container div.word-container.visible {
-	display: unset;
+
+div.word-container.visible {
+	display: unset;	
+	bottom: 0;
+	transition: bottom .4s;
 	}
 
 div.word-container div.final-word {
-	border: 1px none green;
+	border: 1px solid green;
 	position: absolute;
 	bottom: 60px;
 	width: 80vw;
@@ -219,13 +222,19 @@ div.final-word div.letter {
 	margin-right: 5px;
 	}
 
-div.background.inactive div.list-view {
+div.background.list div.list-view {
 	width: inherit;
 	height: inherit;
 	position: relative;
 	text-align: center;
 	padding: 2px;
 	cursor: pointer;
+	
+	-webkit-backdrop-filter: blur(5px);
+	-moz-backdrop-filter: blur(5px);
+	-o-backdrop-filter: blur(5px);
+	-ms-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px); 
 	}
 
 
@@ -234,7 +243,7 @@ div.background div.list-view.hidden {
 	}
 
 
-div.background.inactive div.list-view p {
+div.background.list div.list-view p {
 	position: relative;
 	border: .5px none white;
 	margin-top: 3vh;

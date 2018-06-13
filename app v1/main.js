@@ -33,15 +33,15 @@ $(document).ready(function(){
 			}
 		});
 
-	$('div.background.inactive div.list-view').click(function(){
-		$(this).parent('div.background.inactive').removeClass('inactive');
+	$('div.background.list div.list-view').click(function(){
+		$(this).parent('div.background.list').removeClass('list');
 		$(this).prev('div.container.hidden').removeClass('hidden');
 		$(this).addClass('hidden');
 
-		$('div.background.inactive').not($(this).parent('div.background.inactive')).css('display','none');
+		$('div.background.list').not($(this).parent('div.background.list')).css('display','none');
 		});
 
 	$('div.menu div img').click(function(){
-		$('div.container div.word-container').toggleClass('visible');
+		$('div.word-container').toggleClass('visible');
 		});
 	});
