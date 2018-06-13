@@ -4,27 +4,40 @@
 
 <head>
     <title>artQuest</title>
-    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="screen.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width", initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <meta charset="utf-8">
 </head>
 
 <body>
 
-
-    
+     <div class="header">
+        <div class="container">
+            <div>
+                <h1 id="logo"><span class="highlight">ArtQuest</span></h1>
+            </div>
+        </div>
+    </div>
 
     <div class="grandParentContaniner">
-        <header>
-            <div class="container">
-                <div>
-                    <h1 id="logo"><span class="highlight">ArtQuest</span></h1>
-                </div>
-            </div>
-        </header>
+       
+         <div class="naam" style="display:none;">
+            <form id="naamveld" action="url voor database" method="get">
+              <p id="naamveldtext">Voer je naam in:</p>
+              <input type="text" name="naam" placeholder="Naam"><br>
+              <input type="submit" id="naambutton" value="Ga door">
+            </form>
+        </div>
+        
+        <div class="difficulty" style="display:none;">
+            <input type="button" class="difficultybuttons" value="Makkelijk">
+            <input type="button" class="difficultybuttons" value="Gemiddeld">
+            <input type="button" class="difficultybuttons" value="Moeilijk">
+        </div>
 
-        <div class="parentContainer">
+        <div class="start" style="display:unset;">
             <input type="button" id="startbutton" value="Start het spel!">
         </div>
         

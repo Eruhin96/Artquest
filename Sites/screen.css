@@ -4,6 +4,7 @@ body{
   /*line-height: 1.5;*/
   /*padding: 0; */
   margin: 0;
+  font-family: 'Raleway', sans-serif;
   /*background-position: top -10;*/
   /* height: 100%; */
 }
@@ -13,26 +14,30 @@ box-sizing: border-box;
 }
 
 /* Global */
+
+/* Header */
+div.header{
+  background: #0099ff;
+  color: #ffffff;
+  padding-top: 10px;
+  min-height: 70px;
+  /*border-bottom: #ed6a45 3px solid;*/
+  position: fixed
+  top: 0;
+  z-index: 1;
+}
+
 .container{
   width: 80vw;
   margin: auto;
   overflow: hidden;
 }
 
-/* Header */
-header{
-  background: #0099ff;
-  color: #ffffff;
-  padding-top: 10px;
-  min-height: 70px;
-  border-bottom: #ed6a45 3px solid;
-}
-
 #logo{
   text-align: center;
 }
 
-.grandParentContaniner{
+div.grandParentContaniner{
     display:table;
     /*height: 100%;*/
     margin: 0 auto;
@@ -40,25 +45,37 @@ header{
     border: .5px none green;
     width: 100vw;
     height: 100vh;
-    position: relative;
-}
-.parentContainer{
     position: absolute;
-    width: auto;  
+    top: 0;
+    z-index: -1;
+}
+
+div.naam{
+    position: absolute;
+    width: 70vw;  
     left: 15vw;
-    height: auto;
-    border: .5px solid blue;
+    height: 225px;
+    border: .5px none blue;
     top: 30vh;
 }
-.parentContainer #naamveld{
+div.naam #naamveld{
     background:#4db8ff;
-    border:2px solid #e8491d;
+    /*border:2px solid #e8491d;*/
     border-radius: 5px;
     padding:10px; 
     padding-bottom: 40px;
-    width: 70vw;
-    height: 40vh;
+    width: inherit;
+    height: inherit;
 }
+
+div.difficulty {
+    position: absolute;
+    width: 70vw;  
+    left: 15vw;
+    height: 225px;
+    border: .5px none blue;
+    top: 35vh;
+  }
 
 #naamveldtext{
   text-align: center;
@@ -92,30 +109,11 @@ input[type=submit]:hover{
     background-color: #ea572e;
 }
 
-#startbutton{
-  background-color: #ed6a45;
-  border: solid 1px #ed6a45;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
-#startbutton:hover{
-    background-color: #ea572e;
-}
-
 .difficultybuttons{
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #ed6a45; /* Green background */
-  border: 1px solid #ed6a45; /* Green border */
+  border: 1px none #ed6a45; /* Green border */
   font-size: 16px;
   color: white; /* White text */
   padding: 10px 24px; /* Some padding */
@@ -129,56 +127,51 @@ input[type=submit]:hover{
     background-color: #ea572e;
 }
 
+div.start{
+    position: absolute;
+    width: 35vw;  
+    left: 32.5vw;
+    height: auto;
+    border: .5px none blue;
+    top: 45vh;
+    height: 50px;
+}
+
+input#startbutton{
+  background-color: #ed6a45;
+  border: none 1px #ed6a45;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  width: inherit;
+  height: inherit;
+}
+
+#startbutton:hover{
+    background-color: #ea572e;
+}
+div.start #naamveld{
+    background:#4db8ff;
+    /*border:2px solid #e8491d;*/
+    border-radius: 5px;
+    padding:10px; 
+    padding-bottom: 40px;
+    width: 70vw;
+    height: 40vh;
+}
+
 footer {
   padding: 10px;
   /* margin-top: 10px; */
   color: #ffffff;
   background-color: #0099ff;
-  border-top: #ed6a45 3px solid;
+  /*border-top: #ed6a45 3px solid;*/
   text-align: center;
   position: absolute;
   bottom: 0;
   width: 100vw;
-}
-@media only screen and (min-width: 360px) {
-    .parentContainer{
-      position: absolute;
-      width: auto;  
-      left: 20vw;
-      height: auto;
-      border: .5px solid blue;
-      top: 33.75vh;
-  }
-  .parentContainer #naamveld{
-      background:#4db8ff;
-      border:2px solid #e8491d;
-      border-radius: 5px;
-      padding:10px; 
-      padding-bottom: 40px;
-      width: 60vw;
-      height: 32.5vh;
-  }
-}
-
-@media only screen and (min-width: 740px) {
-
-    .parentContainer {
-        position: absolute;
-        width: auto;  
-        left: 37.5vw;
-        height: auto;
-        border: .5px solid blue;
-        top: 33.75vh;
-    }
-
-    .parentContainer #naamveld{
-        background:#4db8ff;
-        border:2px solid #e8491d;
-        border-radius: 5px;
-        padding:10px; 
-        padding-bottom: 40px;
-        width: 25vw;
-        height: 32.5vh;
-    }
-
 }
