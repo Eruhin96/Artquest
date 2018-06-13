@@ -4,7 +4,7 @@
 
 <head>
     <title>artQuest</title>
-    <link rel="stylesheet" type="text/css" href="screen.css">
+    <link rel="stylesheet" type="text/css" href="startscherm.css">
     <meta name="viewport" content="width=device-width", initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="main.js"></script>
@@ -24,17 +24,16 @@
     <div class="grandParentContaniner">
        
          <div class="naam" style="display:none;">
-            <form id="naamveld" action="url voor database" method="get">
-              <p id="naamveldtext">Voer je naam in:</p>
-              <input type="text" name="naam" placeholder="Naam"><br>
-              <input type="submit" id="naambutton" value="Ga door">
-            </form>
+            <p id="naamveldtext">Voer je naam in:</p>
+            <input type="text" name="naam" placeholder="Naam"><br>
+            <input type="submit" id="naambutton" value="Ga door">
         </div>
         
         <div class="difficulty" style="display:none;">
-            <input type="button" class="difficultybuttons" value="Makkelijk">
-            <input type="button" class="difficultybuttons" value="Gemiddeld">
-            <input type="button" class="difficultybuttons" value="Moeilijk">
+            <p id="naamveldtext">Kies niveau</p>
+            <input type="button" class="difficultybuttons" name="easy" value="Makkelijk">
+            <input type="button" class="difficultybuttons" name="medium" value="Gemiddeld">
+            <input type="button" class="difficultybuttons" name="hard" value="Moeilijk">
         </div>
 
         <div class="start" style="display:unset;">
@@ -42,11 +41,11 @@
         </div>
         
       <footer>
-        <p>Website made by: us</p>
+        <p>Website made by: team7</p>
       </footer>
     </div>
 
-    <script src="main.js"></script>
+    <script src="startscherm.js"></script>
   
 </body>
 
