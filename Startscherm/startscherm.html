@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="startscherm.css">
     <meta name="viewport" content="width=device-width", initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="main.js"></script>
     <meta charset="utf-8">
 </head>
 
@@ -22,11 +21,13 @@
     </div>
 
     <div class="grandParentContaniner">
+        <div class="Welkom">
+        </div>
        
-         <div class="naam" style="display:none;">
-            <p id="naamveldtext">Voer je naam in:</p>
+         <div class="naam" style="display:unset;">
+            <p id="naamveldtext">Voer je naam in</p>
             <input type="text" name="naam" placeholder="Naam"><br>
-            <input type="submit" id="naambutton" value="Ga door">
+            <input type="submit" id="naambutton" value="Ga door" name="continue">
         </div>
         
         <div class="difficulty" style="display:none;">
@@ -36,16 +37,19 @@
             <input type="button" class="difficultybuttons" name="hard" value="Moeilijk">
         </div>
 
-        <div class="start" style="display:unset;">
-            <input type="button" id="startbutton" value="Start het spel!">
+        <div class="start" style="display:none;">
+            <a href="" id="startbutton"> Start het spel!</a>
         </div>
-        
-      <footer>
-        <p>Website made by: team7</p>
-      </footer>
     </div>
+        
+     
+      <footer>
+        <p>team7</p>
 
-    <script src="startscherm.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="startscherm.js"></script>
+      </footer>
+
   
 </body>
 
