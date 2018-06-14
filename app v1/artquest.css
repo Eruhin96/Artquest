@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	background-color: lightgrey;
+	max-height: 100vh;
 	}
 
 * {
@@ -85,7 +86,7 @@ div.container {
 	}
 
 div.container.hidden {
-	visibility: hidden;
+	display: none;
 	}
 
 div.container div.riddle {
