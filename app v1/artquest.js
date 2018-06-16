@@ -39,6 +39,7 @@ $(document).ready(function(){
 		$(this).addClass('hidden');
 
 		$('div.background.list').not($(this).parent('div.background.list')).css('display','none');
+		$('div.level').css('display', 'none');
 		});
 
 	$('div.menu div img').click(function(){
