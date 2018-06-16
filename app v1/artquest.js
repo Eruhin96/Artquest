@@ -1,8 +1,16 @@
 $(document).ready(function(){
+
+
+	function showFinalWord(){
+		$('div.word-container').toggleClass('visible');
+		}
+
 	$('div.solution div.entry input').on('focus', function(){
 		if($(this).val().length == 0){
 			$('div.solution div.hint').css('display','unset');
 			$('div.solution div.submit').css('display','none');
+				$('div.solution div.correct').css('display','none');
+				$('div.solution div.incorrect').css('display','none');
 			$('div.solution').css('backgroundColor', 'rgba(255,255,255,0.8)');
 			$('div.solution div.entry').css('backgroundColor', 'transparent');
 			}
@@ -10,6 +18,8 @@ $(document).ready(function(){
 		else{
 			$('div.solution div.hint').css('display','none');
 			$('div.solution div.submit').css('display','unset');
+			$('div.solution div.correct').css('display','none');
+			$('div.solution div.incorrect').css('display','none');
 			$('div.solution').css('backgroundColor', 'transparent');
 			$('div.solution div.entry').css('backgroundColor', 'rgba(255,255,255,0.8)');
 			}
@@ -30,6 +40,55 @@ $(document).ready(function(){
 			$('div.solution').css('backgroundColor', 'transparent');
 			$('div.solution div.entry').css('backgroundColor', 'rgba(255,255,255,0.8)');
 			$('div.menu div#tally p').html($(this).val().length);
+
+			$(this).on('keyup', function (e) {
+			    if(e.keyCode  == 13){
+
+			        //Disable textbox to prevent multiple submit
+			        $(this).attr("disabled", "disabled");
+
+			        if($(this).val().toUpperCase() == "RIJKSMUSEUM"){
+						$('div.solution div.hint').css('display','none');
+						$('div.solution div.submit').css('display','none');
+						$('div.solution div.correct').css('display','unset');
+						$('div.solution div.correct svg').css('cursor','default');
+						$('div.solution div.incorrect').css('display','none');
+						setTimeout(function(){showFinalWord();},300);
+						}
+					else{
+						$('div.solution div.hint').css('display','none');
+						$('div.solution div.submit').css('display','none');
+						$('div.solution div.correct').css('display','none');
+						$('div.solution div.incorrect').css('display','unset');
+						//$(this).parent().parent().effect('shake', 15, 1);
+				        $(this).removeAttr("disabled");
+						}
+			        }
+			    else {
+					$('div.solution div.correct').css('display','none');
+					$('div.solution div.incorrect').css('display','none');
+				    }
+			   	});
+			}
+		});
+
+	$('div.solution div.submit').click(function(){
+		if($(this).siblings('div.solution div.entry input').val().toUpperCase() == "RIJKSMUSEUM"){
+	        $(this).siblings('div.solution div.entry input').attr("disabled", "disabled");
+			$('div.solution div.hint').css('display','none');
+			$('div.solution div.submit').css('display','none');
+			$('div.solution div.correct').css('display','unset');
+			$('div.solution div.correct svg').css('cursor','default');
+			$('div.solution div.incorrect').css('display','none');
+			setTimeout(function(){showFinalWord();},300);
+			}
+
+		else{
+			$('div.solution div.hint').css('display','none');
+			$('div.solution div.submit').css('display','none');
+			$('div.solution div.correct').css('display','none');
+			$('div.solution div.incorrect').css('display','unset');
+			//$(this).parent().parent().effect('shake', 15, 1);
 			}
 		});
 
@@ -43,6 +102,7 @@ $(document).ready(function(){
 		});
 
 	$('div.menu div img').click(function(){
-		$('div.word-container').toggleClass('visible');
+		showFinalWord();
 		});
+		
 	});
