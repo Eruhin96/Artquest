@@ -43,25 +43,31 @@ div.menu div#name {
 	width: 50vw;
 	}
 
-div.menu div p {
-	border: .5px none blue;
-	height: 20px;
-	margin-top: 25px;
+div.menu div#tally p {
+	position: relative;
+	top: 5px;
+	border: .5px none white;	
+	cursor: pointer;
+	}
+
+div.menu p.hidden {
+	display: none;
 	}
 
 div.menu div svg {
 	cursor: pointer;
 	height: 40px;
 	width: auto;
-	top: 5px;
+	top: 8px;
 	position: relative;
-	fill: white;
+	fill: #A2ABAD;
 	}	
 
 div.menu div svg~p {
-	margin-top: 5px;
+	margin-top: 7px;
 	font-size: 10px;
 	cursor: pointer;
+	color: #A2ABAD;
 	}
 
 div.level a {
@@ -262,10 +268,10 @@ div.solution div.incorrect svg {
 	}
 
 div.word-container {
-	position: fixed;
-	bottom: -50vh;
+	position:fixed;
+	bottom: -80vh;
 	border: 1.5px none lightblue;
-	height: 45vh;
+	height: 75vh;
 	width: 100vw;
 	background-color: #40474F;
 	z-index: 3;
@@ -309,6 +315,10 @@ div.final-word div.letter span {
 	position: relative;
 	font-size: 30px;
 	font-weight: bold;
+	}
+
+div.background.list.hidden {
+	display: none;	
 	}
 
 div.background.list div.list-view {
