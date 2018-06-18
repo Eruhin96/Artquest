@@ -99,6 +99,8 @@ div.background.list {
 	position: relative;
 	height: 10vh;
 	top: 30vh;
+	transition: height .5s;
+
 	}
 
 div.container {
@@ -130,7 +132,7 @@ div.container div.riddle {
 	text-align: center;
 	background-color: #40474F;
 	border-radius: 5px;
-	padding: 2px;
+	padding: 2px 4px;
 	}
 
 div.container div.solution {
@@ -318,7 +320,7 @@ div.final-word div.letter span {
 	}
 
 div.background.list.hidden {
-	display: none;	
+	display: none;
 	}
 
 div.background.list div.list-view {
@@ -336,11 +338,9 @@ div.background.list div.list-view {
 	backdrop-filter: blur(5px); 
 	}
 
-
 div.background div.list-view.hidden {
 	display: none;
 	}
-
 
 div.background.list div.list-view p {
 	position: relative;
