@@ -101,7 +101,7 @@ $(document).ready(function(){
 		$('div.level').css('display', 'none');
 		});
 
-	$('div.menu div img').click(function(){
+	$('div.menu div svg, div.menu div svg~p' ).click(function(){
 		showFinalWord();
 		});
 		

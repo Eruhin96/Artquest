@@ -47,17 +47,24 @@ div.menu div p {
 	border: .5px none blue;
 	height: 20px;
 	margin-top: 25px;
-	}	
+	}
 
-div.menu div img {
+div.menu div svg {
 	cursor: pointer;
 	height: 40px;
 	width: auto;
-	top: 17.5px;
+	top: 5px;
 	position: relative;
+	fill: white;
+	}	
+
+div.menu div svg~p {
+	margin-top: 5px;
+	font-size: 10px;
+	cursor: pointer;
 	}
 
-div.level {
+div.level a {
 	position: absolute;
 	border: .5px none red;
 	height: 40px;
@@ -68,7 +75,12 @@ div.level {
 	background-color: #D55140;
 	border-radius: 5px;
 	padding-top: 10px;
-}
+	}
+
+div.level a:hover {
+	background-color: white;
+	color: black;
+	}
 
 div.background {
 	border: .5px none white;
@@ -196,6 +208,10 @@ div.solution div.submit svg {
 	color: white;
 	z-index: 2;
 	}	
+
+div.solution div.submit svg:hover {
+	fill: white;
+	}
 
 div.solution div.correct {
 	display: none;
