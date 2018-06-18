@@ -95,6 +95,7 @@ div.background {
 	width: 100vw;
 	position: relative;
 	top: 0;
+	/* transition: top .4s; */
 	}
 
 div.background.list {
