@@ -1,45 +1,49 @@
 $(document).ready(function(){
 
+	$('p#name').text('lloydnyarko');
 
-	function showFinalWord(){
+	function showMenu(){
 		$('div.word-container').toggleClass('visible');
+		}
+	function closeMenu(){
+		$('div.word-container').removeClass('visible');
 		}
 
 	$('div.solution div.entry input').on('focus', function(){
 		if($(this).val().length == 0){
-			$('div.solution div.hint').css('display','unset');
-			$('div.solution div.submit').css('display','none');
-				$('div.solution div.correct').css('display','none');
-				$('div.solution div.incorrect').css('display','none');
-			$('div.solution').css('backgroundColor', 'rgba(255,255,255,0.8)');
-			$('div.solution div.entry').css('backgroundColor', 'transparent');
+			$(this).nextAll('div.solution div.hint').css('display','unset');
+			$(this).nextAll('div.solution div.submit').css('display','none');
+			$(this).nextAll('div.solution div.correct').css('display','none');
+			$(this).nextAll('div.solution div.incorrect').css('display','none');
+			$(this).parents('div.container div.solution').css('backgroundColor', 'rgba(255,255,255,0.8)');
+			$(this).parent('div.entry').css('backgroundColor', 'transparent');
 			}
 
 		else{
-			$('div.solution div.hint').css('display','none');
-			$('div.solution div.submit').css('display','unset');
-			$('div.solution div.correct').css('display','none');
-			$('div.solution div.incorrect').css('display','none');
-			$('div.solution').css('backgroundColor', 'transparent');
-			$('div.solution div.entry').css('backgroundColor', 'rgba(255,255,255,0.8)');
+			$(this).nextAll('div.solution div.hint').css('display','none');
+			$(this).nextAll('div.solution div.submit').css('display','unset');
+			$(this).nextAll('div.solution div.correct').css('display','none');
+			$(this).nextAll('div.solution div.incorrect').css('display','none');
+			$(this).parents('div.container div.solution').css('backgroundColor', 'transparent');
+			$(this).parent('div.entry').css('backgroundColor', 'rgba(255,255,255,0.8)');
 			}
 		});
 
 	$('div.solution div.entry input').on('keyup', function(){
 		if($(this).val().length == 0){
-			$('div.solution div.hint').css('display','unset');
-			$('div.solution div.submit').css('display','none');
-			$('div.solution').css('backgroundColor', 'rgba(255,255,255,0.8)');
-			$('div.solution div.entry').css('backgroundColor', 'transparent');
-			//$('div.menu div#tally p').html($(this).val().length);
+			$(this).nextAll('div.solution div.hint').css('display','unset');
+			$(this).nextAll('div.solution div.submit').css('display','none');
+			$(this).parents('div.container div.solution').css('backgroundColor', 'rgba(255,255,255,0.8)');
+			$(this).parent('div.entry').css('backgroundColor', 'transparent');
+			$('div.word-container div#score p').html($(this).val().length);
 			}
 
 		else {
-			$('div.solution div.hint').css('display','none');
-			$('div.solution div.submit').css('display','unset');
-			$('div.solution').css('backgroundColor', 'transparent');
-			$('div.solution div.entry').css('backgroundColor', 'rgba(255,255,255,0.8)');
-			//$('div.menu div#tally p').html($(this).val().length);
+			$(this).nextAll('div.solution div.hint').css('display','none');
+			$(this).nextAll('div.solution div.submit').css('display','unset');
+			$(this).parents('div.container div.solution').css('backgroundColor', 'transparent');
+			$(this).parent('div.entry').css('backgroundColor', 'rgba(255,255,255,0.8)');
+			$('div.word-container div#score p').html($(this).val().length);
 
 			$(this).on('keyup', function (e) {
 			    if(e.keyCode  == 13){
@@ -48,25 +52,25 @@ $(document).ready(function(){
 			        $(this).attr("disabled", "disabled");
 
 			        if($(this).val().toUpperCase() == "RIJKSMUSEUM"){
-						$('div.solution div.hint').css('display','none');
-						$('div.solution div.submit').css('display','none');
-						$('div.solution div.correct').css('display','unset');
-						$('div.solution div.correct svg').css('cursor','default');
-						$('div.solution div.incorrect').css('display','none');
-						setTimeout(function(){showFinalWord();},300);
+						$(this).nextAll('div.solution div.hint').css('display','none');
+						$(this).nextAll('div.solution div.submit').css('display','none');
+						$(this).nextAll('div.solution div.correct').css('display','unset');
+						$(this).nextAll('div.solution div.correct').children('svg').css('cursor','default');
+						$(this).nextAll('div.solution div.incorrect').css('display','none');
+						setTimeout(function(){showMenu();},300);
 						}
 					else{
-						$('div.solution div.hint').css('display','none');
-						$('div.solution div.submit').css('display','none');
-						$('div.solution div.correct').css('display','none');
-						$('div.solution div.incorrect').css('display','unset');
-						//$(this).parent().parent().effect('shake', 15, 1);
+						$(this).nextAll('div.solution div.hint').css('display','none');
+						$(this).nextAll('div.solution div.submit').css('display','none');
+						$(this).nextAll('div.solution div.correct').css('display','none');
+						$(this).nextAll('div.solution div.incorrect').css('display','unset');
+						//$(this).parents().effect('shake', 15, 1);
 				        $(this).removeAttr("disabled");
 						}
 			        }
 			    else {
-					$('div.solution div.correct').css('display','none');
-					$('div.solution div.incorrect').css('display','none');
+					$(this).nextAll('div.solution div.correct').css('display','none');
+					$(this).nextAll('div.solution div.incorrect').css('display','none');
 				    }
 			   	});
 			}
@@ -80,7 +84,7 @@ $(document).ready(function(){
 			$('div.solution div.correct').css('display','unset');
 			$('div.solution div.correct svg').css('cursor','default');
 			$('div.solution div.incorrect').css('display','none');
-			setTimeout(function(){showFinalWord();},300);
+			setTimeout(function(){showMenu();},300);
 			}
 
 		else{
@@ -88,7 +92,7 @@ $(document).ready(function(){
 			$('div.solution div.submit').css('display','none');
 			$('div.solution div.correct').css('display','none');
 			$('div.solution div.incorrect').css('display','unset');
-			//$(this).parent().parent().effect('shake', 15, 1);
+			//$(this).parents().effect('shake', 15, 1);
 			}
 		});
 
@@ -100,11 +104,12 @@ $(document).ready(function(){
 		$('div.background.list').not($(this).parent('div.background.list')).addClass('hidden');
 		$('div.level').css('display', 'none');
 
-		$('div.menu div p#score').addClass('hidden');
-		$('div.menu div p#back').removeClass('hidden');
+		$('div.header div p#home').addClass('hidden');
+		$('div.header div p#back').removeClass('hidden');
 		});
 
-	$('div.menu div p#back').click(function(){
+	$('div.header div p#back').click(function(){
+		closeMenu();
 		$('div.background').addClass('list');
 		$('div.container').addClass('hidden');
 		$('div.background div.list-view').removeClass('hidden');
@@ -112,12 +117,12 @@ $(document).ready(function(){
 		$('div.background.list.hidden').removeClass('hidden');
 		$('div.level').css('display', 'unset');
 
-		$('div.menu div p#score').removeClass('hidden');
-		$('div.menu div p#back').addClass('hidden');
+		$('div.header div p#home').removeClass('hidden');
+		$('div.header div p#back').addClass('hidden');
 		});
 
-	$('div.menu div svg, div.menu div svg~p' ).click(function(){
-		showFinalWord();
+	$('div.header div svg, div.header div svg~p' ).click(function(){
+		showMenu();
 		});
 		
 	});

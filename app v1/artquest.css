@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5 {
 	color: white;
 	}
 
-div.menu {
+div.header {
 	position: fixed;
 	border: 1px none orange;
 	display: inline-flex;
@@ -32,29 +32,29 @@ div.menu {
 	z-index: 2;
 	}
 
-div.menu div {
+div.header div {
 	height: inherit;
 	width: 25vw;
 	border: 1px none green;
 	text-align: center;
 	}
 
-div.menu div#name {
+div.header div:nth-of-type(2) {
 	width: 50vw;
 	}
 
-div.menu div#tally p {
+div.header div#navigation p {
 	position: relative;
 	top: 5px;
 	border: .5px none white;	
 	cursor: pointer;
 	}
 
-div.menu p.hidden {
+div.header p.hidden {
 	display: none;
 	}
 
-div.menu div svg {
+div.header div svg {
 	cursor: pointer;
 	height: 40px;
 	width: auto;
@@ -63,7 +63,7 @@ div.menu div svg {
 	fill: #A2ABAD;
 	}	
 
-div.menu div svg~p {
+div.header div svg~p {
 	margin-top: 7px;
 	font-size: 10px;
 	cursor: pointer;
@@ -103,7 +103,35 @@ div.background.list {
 	height: 10vh;
 	top: 30vh;
 	transition: height .6s, top .6s;
+	}
 
+div.background.list.hidden {
+	display: none;
+	}
+
+div.background.list div.list-view {
+	width: inherit;
+	height: inherit;
+	position: relative;
+	text-align: center;
+	padding: 2px;
+	cursor: pointer;
+	
+	-webkit-backdrop-filter: blur(5px);
+	-moz-backdrop-filter: blur(5px);
+	-o-backdrop-filter: blur(5px);
+	-ms-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px); 
+	}
+
+div.background div.list-view.hidden {
+	display: none;
+	}
+
+div.background.list div.list-view p {
+	position: relative;
+	border: .5px none white;
+	margin-top: 3vh;
 	}
 
 div.container {
@@ -293,6 +321,26 @@ div.word-container.visible {
 	transition: bottom .4s;
 	}
 
+div.word-container div.personal-info {
+	border: .5px none lightblue;
+	position: absolute;
+	height: 60px;
+	width: 80vw;
+	left: 10vw;
+	top: 5vh;
+	display: inline-flex;
+	text-align: center;
+	}
+
+div.personal-info div {
+	width: 20vw;
+	border: .5px none red;	
+	}
+
+div.personal-info div:nth-of-type(2) {
+	width: 40vw;
+	}
+
 div.word-container div.final-word {
 	border: 1px none green;
 	position: absolute;
@@ -322,33 +370,14 @@ div.final-word div.letter span {
 	font-weight: bold;
 	}
 
-div.background.list.hidden {
-	display: none;
-	}
-
-div.background.list div.list-view {
-	width: inherit;
-	height: inherit;
-	position: relative;
-	text-align: center;
-	padding: 2px;
-	cursor: pointer;
-	
-	-webkit-backdrop-filter: blur(5px);
-	-moz-backdrop-filter: blur(5px);
-	-o-backdrop-filter: blur(5px);
-	-ms-backdrop-filter: blur(5px);
-	backdrop-filter: blur(5px); 
-	}
-
-div.background div.list-view.hidden {
-	display: none;
-	}
-
-div.background.list div.list-view p {
-	position: relative;
+div.word-container div.settings {
+	position: absolute;
+	bottom: 10px;
+	width: 30vw;
+	left: 67vw;
+	height: 30px;
 	border: .5px none white;
-	margin-top: 3vh;
+	text-align: center;
 	}
 
 @media only screen and (min-width: 740px){
