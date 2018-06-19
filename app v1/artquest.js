@@ -35,7 +35,7 @@ $(document).ready(function(){
 			$(this).nextAll('div.solution div.submit').css('display','none');
 			$(this).parents('div.container div.solution').css('backgroundColor', 'rgba(255,255,255,0.8)');
 			$(this).parent('div.entry').css('backgroundColor', 'transparent');
-			$('div.word-container div#score p').html($(this).val().length);
+			$('div.word-container div#score span').html($(this).val().length);
 			}
 
 		else {
@@ -43,7 +43,7 @@ $(document).ready(function(){
 			$(this).nextAll('div.solution div.submit').css('display','unset');
 			$(this).parents('div.container div.solution').css('backgroundColor', 'transparent');
 			$(this).parent('div.entry').css('backgroundColor', 'rgba(255,255,255,0.8)');
-			$('div.word-container div#score p').html($(this).val().length);
+			$('div.word-container div#score span').html($(this).val().length);
 
 			$(this).on('keyup', function (e) {
 			    if(e.keyCode  == 13){
