@@ -51,13 +51,15 @@ $(document).ready(function(){
 			        //Disable textbox to prevent multiple submit
 			        $(this).attr("disabled", "disabled");
 
-			        if($(this).val().toUpperCase() == "RIJKSMUSEUM"){
+			        if($(this).val().toUpperCase() == "RIJKSMUSEUM"){						
+			        	setTimeout(function(){showMenu();},300);
 						$(this).nextAll('div.solution div.hint').css('display','none');
 						$(this).nextAll('div.solution div.submit').css('display','none');
 						$(this).nextAll('div.solution div.correct').css('display','unset');
 						$(this).nextAll('div.solution div.correct').children('svg').css('cursor','default');
 						$(this).nextAll('div.solution div.incorrect').css('display','none');
-						setTimeout(function(){showMenu();},300);
+						$(this).parents('div.container').addClass('done');
+						$(this).parents('div.container').siblings('div.list-view').addClass('done');
 						}
 					else{
 						$(this).nextAll('div.solution div.hint').css('display','none');
@@ -77,21 +79,23 @@ $(document).ready(function(){
 		});
 
 	$('div.solution div.submit').click(function(){
-		if($(this).siblings('div.solution div.entry input').val().toUpperCase() == "RIJKSMUSEUM"){
-	        $(this).siblings('div.solution div.entry input').attr("disabled", "disabled");
-			$('div.solution div.hint').css('display','none');
-			$('div.solution div.submit').css('display','none');
-			$('div.solution div.correct').css('display','unset');
-			$('div.solution div.correct svg').css('cursor','default');
-			$('div.solution div.incorrect').css('display','none');
+		if($(this).siblings('div.solution div.entry input').val().toUpperCase() == "RIJKSMUSEUM"){			
 			setTimeout(function(){showMenu();},300);
+	        $(this).siblings('div.solution div.entry input').attr("disabled", "disabled");
+			$(this).prev('div.solution div.hint').css('display','none');
+			$(this).css('display','none');
+			$(this).siblings('div.solution div.correct').css('display','unset');
+			$(this).siblings('div.solution div.correct').children('svg').css('cursor','default');
+			$(this).siblings('div.solution div.incorrect').css('display','none');
+			$(this).parents('div.container').addClass('done');
+			$(this).parents('div.container').siblings('div.list-view').addClass('done');
 			}
 
 		else{
-			$('div.solution div.hint').css('display','none');
-			$('div.solution div.submit').css('display','none');
-			$('div.solution div.correct').css('display','none');
-			$('div.solution div.incorrect').css('display','unset');
+			$(this).prev('div.solution div.hint').css('display','none');
+			$(this).siblings('div.solution div.submit').css('display','none');
+			$(this).css('display','none');
+			$(this).siblings('div.solution div.incorrect').css('display','unset');
 			//$(this).parents().effect('shake', 15, 1);
 			}
 		});

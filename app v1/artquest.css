@@ -50,11 +50,21 @@ div.header div#navigation p {
 	cursor: pointer;
 	}
 
+div.header div#navigation svg {
+	cursor: pointer;
+	height: 20px;
+	width: auto;
+	top: 8px;
+	position: relative;
+	fill: #A2ABAD;
+	color: #A2ABAD;
+	}	
+
 div.header p.hidden {
 	display: none;
 	}
 
-div.header div svg {
+div.header div#user svg {
 	cursor: pointer;
 	height: 40px;
 	width: auto;
@@ -63,7 +73,7 @@ div.header div svg {
 	fill: #A2ABAD;
 	}	
 
-div.header div svg~p {
+div.header div#user svg~p {
 	margin-top: 7px;
 	font-size: 10px;
 	cursor: pointer;
@@ -124,6 +134,14 @@ div.background.list div.list-view {
 	backdrop-filter: blur(5px); 
 	}
 
+div.background.list div.list-view.done, div.container.done {	
+	-webkit-backdrop-filter: blur(5px) grayscale(80%);
+	-moz-backdrop-filter: blur(5px) grayscale(80%);
+	-o-backdrop-filter: blur(5px) grayscale(80%);
+	-ms-backdrop-filter: blur(5px) grayscale(80%);
+	backdrop-filter: blur(5px) grayscale(80%); 
+	}
+
 div.background div.list-view.hidden {
 	display: none;
 	}
@@ -146,8 +164,7 @@ div.container {
 	-moz-backdrop-filter: blur(10px);
 	-o-backdrop-filter: blur(10px);
 	-ms-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);  
-	
+	backdrop-filter: blur(10px); 
 	}
 
 div.container.hidden {
