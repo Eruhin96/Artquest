@@ -20,7 +20,7 @@ $(document).ready(function(){
 			}
 		});
 
-	$('input.difficultybuttons').click(function(){
+	$('a.difficultybuttons').click(function(){
 		$('div.naam').css('display', 'none');
 		$('div.difficulty').css('display', 'none');
 		$('div.start').css('display', 'unset');
