@@ -29,7 +29,7 @@ div.header {
 	height: 70px;
 	top: 0;
 	background-color: #343537;
-	z-index: 2;
+	z-index: 3;
 	}
 
 div.header div {
@@ -50,6 +50,10 @@ div.header div#navigation p {
 	cursor: pointer;
 	}
 
+div.header div#navigation p#back {
+	color: #A2ABAD;
+	}
+
 div.header div#navigation svg {
 	cursor: pointer;
 	height: 20px;
@@ -60,7 +64,7 @@ div.header div#navigation svg {
 	color: #A2ABAD;
 	}	
 
-div.header p.hidden {
+.hidden {
 	display: none;
 	}
 
@@ -80,24 +84,6 @@ div.header div#user svg~p {
 	color: #A2ABAD;
 	}
 
-div.level a {
-	position: absolute;
-	border: .5px none red;
-	height: 40px;
-	top: 100px;
-	width: 40vw;
-	left: 5vw;
-	text-align: center;
-	background-color: #D55140;
-	border-radius: 5px;
-	padding-top: 10px;
-	}
-
-div.level a:hover {
-	background-color: white;
-	color: black;
-	}
-
 div.background {
 	border: .5px none white;
 	background: center/cover no-repeat;
@@ -110,13 +96,10 @@ div.background {
 
 div.background.list {
 	position: relative;
-	height: 10vh;
-	top: 30vh;
+	height: calc((100vh - 70px) / 7 );
+	min-height: 80px;
+	top: 70px;
 	transition: height .6s, top .6s;
-	}
-
-div.background.list.hidden {
-	display: none;
 	}
 
 div.background.list div.list-view {
@@ -126,6 +109,7 @@ div.background.list div.list-view {
 	text-align: center;
 	padding: 2px;
 	cursor: pointer;
+	min-height: 80px;
 	
 	-webkit-backdrop-filter: blur(5px);
 	-moz-backdrop-filter: blur(5px);
@@ -142,14 +126,10 @@ div.background.list div.list-view.done, div.container.done {
 	backdrop-filter: blur(5px) grayscale(80%); 
 	}
 
-div.background div.list-view.hidden {
-	display: none;
-	}
-
 div.background.list div.list-view p {
 	position: relative;
 	border: .5px none white;
-	margin-top: 3vh;
+	margin-top: 5vh;
 	}
 
 div.container {
@@ -165,10 +145,6 @@ div.container {
 	-o-backdrop-filter: blur(10px);
 	-ms-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px); 
-	}
-
-div.container.hidden {
-	display: none;
 	}
 
 div.container div.riddle {
@@ -214,7 +190,7 @@ div.solution div.entry input {
 	background-color: transparent;
 	}
 
-div.solution div.entry input:focus {
+input:focus {
 	outline: none;
 	/* background-color: pink; */
 	}
@@ -355,7 +331,34 @@ div.personal-info div {
 	}
 
 div.personal-info div:nth-of-type(2) {
-	width: 40vw;
+	width: 30vw;
+	}
+
+div.word-container div#settings {
+	width: 30vw;
+	text-align: center;
+	}
+
+div#settings p, div#settings svg {
+	cursor: pointer;
+	}
+
+div#settings svg {
+	position: absolute;
+	height: 50px ;	
+	fill: #A2ABAD;
+	top: 0;
+	right: -3vw;
+	}
+
+div.word-container div.features {
+	position: relative;
+	border: .5px none lightblue;
+	height: auto;
+	width: 70vw;
+	left: 15vw;
+	top: 30vh;
+	text-align: center;
 	}
 
 div.word-container div.final-word {
@@ -383,20 +386,82 @@ div.final-word div.letter span {
 	position: static;
 	top: 8px;
 	position: relative;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
+	text-transform: uppercase;
 	}
 
-div.word-container div.settings {
-	position: absolute;
-	bottom: 10px;
-	width: 30vw;
-	left: 67vw;
-	height: 30px;
+div.final-word div.letter input {
+	width: inherit;
+	height: inherit;
+	font-size: 20px;
+	border-radius: inherit;
+	border: none;
+	text-align: center;
+	text-transform: uppercase;
+	}
+
+div.settings {
+	z-index: 3;
+	position: fixed;
 	border: .5px none white;
+	background-color: rgba(214, 218, 219, 0.95);
+	width: 90vw;
+	left: 5vw;
+	height: 60vh;
+	top: 20vh;
+	border-radius: 12.5px;
+	-webkit-box-shadow: 0px 10px 50px 40px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 10px 50px 40px rgba(0,0,0,0.75);
+	box-shadow: 0px 10px 50px 40px rgba(0,0,0,0.75);
 	text-align: center;
 	}
 
-@media only screen and (min-width: 740px){
+div.settings h3 {
+	color: #343537;
+	}
 
+div.settings svg#close {
+	position: absolute;
+	left: initial;
+	fill: #343537;
+	height: 35px;
+	width: auto;
+	right: 12.5px;
+	top: 12.5px;
+	cursor: pointer;
+	}
+
+div.settings div {
+	position: relative;
+	border: .5px none blue;
+	height: 50px;
+	top: 60px;
+	left: 15vw;
+	width: 60vw;
+	margin-bottom: 30px;
+	}
+
+div.settings div a {
+	position: absolute;
+	border: .5px none red;
+	top: 0;
+	width: inherit;
+	left: 0;
+	background-color: #D55140;
+	border-radius: 5px;
+	padding: 15px 9px;
+	margin-bottom: 40px;
+	}
+
+div.settings div a:hover {
+	background-color: white;
+	color: black;
+	} 
+
+@media only screen and (min-width: 440px){
+
+	div.final-word div.letter span, div.final-word div.letter input {
+		font-size: 25px;
+		}
 	}

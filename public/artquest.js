@@ -1,6 +1,6 @@
 $(document).ready(function(){
-
-	$('p#name').text('lloydnyarko');
+	
+	$('p#name').text(localStorage.username);
 
 	function showMenu(){
 		$('div.word-container').toggleClass('visible');
@@ -8,6 +8,7 @@ $(document).ready(function(){
 	function closeMenu(){
 		$('div.word-container').removeClass('visible');
 		}
+
 
 	$('div.solution div.entry input').on('focus', function(){
 		if($(this).val().length == 0){
@@ -35,7 +36,7 @@ $(document).ready(function(){
 			$(this).nextAll('div.solution div.submit').css('display','none');
 			$(this).parents('div.container div.solution').css('backgroundColor', 'rgba(255,255,255,0.8)');
 			$(this).parent('div.entry').css('backgroundColor', 'transparent');
-			$('div.word-container div#score span').html($(this).val().length);
+			//$('div.word-container div#score span').html($(this).val().length);
 			}
 
 		else {
@@ -43,7 +44,7 @@ $(document).ready(function(){
 			$(this).nextAll('div.solution div.submit').css('display','unset');
 			$(this).parents('div.container div.solution').css('backgroundColor', 'transparent');
 			$(this).parent('div.entry').css('backgroundColor', 'rgba(255,255,255,0.8)');
-			$('div.word-container div#score span').html($(this).val().length);
+			//$('div.word-container div#score span').html($(this).val().length);
 
 			$(this).on('keyup', function (e) {
 			    if(e.keyCode  == 13){
@@ -52,7 +53,7 @@ $(document).ready(function(){
 			        $(this).attr("disabled", "disabled");
 
 			        if($(this).val().toUpperCase() == "RIJKSMUSEUM"){						
-			        	setTimeout(function(){showMenu();},300);
+			        	setTimeout(function(){showMenu();$('div.final-word div.letter input').focus();},300);
 						$(this).nextAll('div.solution div.hint').css('display','none');
 						$(this).nextAll('div.solution div.submit').css('display','none');
 						$(this).nextAll('div.solution div.correct').css('display','unset');
@@ -80,7 +81,7 @@ $(document).ready(function(){
 
 	$('div.solution div.submit').click(function(){
 		if($(this).siblings('div.solution div.entry input').val().toUpperCase() == "RIJKSMUSEUM"){			
-			setTimeout(function(){showMenu();},300);
+			setTimeout(function(){showMenu();$('div.final-word div.letter input').focus();},300);
 	        $(this).siblings('div.solution div.entry input').attr("disabled", "disabled");
 			$(this).prev('div.solution div.hint').css('display','none');
 			$(this).css('display','none');
@@ -106,10 +107,11 @@ $(document).ready(function(){
 		$(this).addClass('hidden');
 
 		$('div.background.list').not($(this).parent('div.background.list')).addClass('hidden');
-		$('div.level').css('display', 'none');
+		//$('div.level').css('display', 'none');
 
 		$('div.header div p#home').addClass('hidden');
 		$('div.header div p#back').removeClass('hidden');
+		closeMenu();
 		});
 
 	$('div.header div p#back').click(function(){
@@ -119,7 +121,7 @@ $(document).ready(function(){
 		$('div.background div.list-view').removeClass('hidden');
 
 		$('div.background.list.hidden').removeClass('hidden');
-		$('div.level').css('display', 'unset');
+		//$('div.level').css('display', 'unset');
 
 		$('div.header div p#home').removeClass('hidden');
 		$('div.header div p#back').addClass('hidden');
@@ -128,5 +130,13 @@ $(document).ready(function(){
 	$('div.header div svg, div.header div svg~p' ).click(function(){
 		showMenu();
 		});
-		
+
+	$('div#settings p, div#settings svg').click(function(){
+		$('div.settings').removeClass('hidden');
+		});
+
+	$('div.settings svg#close').click(function(){
+		$('div.settings').addClass('hidden');
+		});
+
 	});
