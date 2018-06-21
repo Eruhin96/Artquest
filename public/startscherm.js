@@ -6,8 +6,8 @@ $(document).ready(function(){
 				$('div.difficulty').css('display', 'unset');
 				
 				if (typeof(Storage) !== "undefined") {
-				    // Code for localStorage/sessionStorage.
-				    localStorage.username =  $('input[type=text]').val();
+				    // Code for sessionStorage/sessionStorage.
+				    sessionStorage.username =  $('input[type=text]').val();
 					} 
 				else {
 					//Sorry! No Web Storage support..
@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 			$('input[type=text]').on('keypress', function (e) {
 			    if(e.keyCode  == 13){
-			    	localStorage.username = $('input[type=text]').val();
+			    	sessionStorage.username = $('input[type=text]').val();
 			        //Disable textbox to prevent multiple submit
 			        $(this).attr("disabled", "disabled");
 					$('div.naam').css('display', 'none');
@@ -31,6 +31,8 @@ $(document).ready(function(){
 		$('div.naam').css('display', 'none');
 		$('div.difficulty').css('display', 'none');
 		$('div.start').css('display', 'unset');
-		localStorage.level = $(this).text();
+		if($(this).text().toUpperCase() == 'MAKKELIJK'){sessionStorage.level = 'Easy';}
+		else if($(this).text().toUpperCase() == 'GEMIDDELD'){sessionStorage.level = 'Medium';}
+		else if($(this).text().toUpperCase() == 'MOEILIJK'){sessionStorage.level = 'Hard';}
 		});
 });
