@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	$('p#name').text('lloydnyarko');
+	$('p#name').text(localStorage.username);
 
 	function showMenu(){
 		$('div.word-container').toggleClass('visible');

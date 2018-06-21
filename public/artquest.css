@@ -382,7 +382,7 @@ div.final-word div.letter span {
 	position: static;
 	top: 8px;
 	position: relative;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
 	text-transform: uppercase;
 	}
@@ -390,7 +390,7 @@ div.final-word div.letter span {
 div.final-word div.letter input {
 	width: inherit;
 	height: inherit;
-	font-size: 30px;
+	font-size: 20px;
 	border-radius: inherit;
 	border: none;
 	text-align: center;
@@ -455,6 +455,9 @@ div.settings div a:hover {
 	color: black;
 	} 
 
-@media only screen and (min-width: 740px){
+@media only screen and (min-width: 440px){
 
+	div.final-word div.letter span, div.final-word div.letter input {
+		font-size: 25px;
+		}
 	}
