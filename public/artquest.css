@@ -1,0 +1,463 @@
+body {
+	margin: 0;
+	background-color: lightgrey;
+	max-height: 100vh;
+	}
+
+* {
+	box-sizing: border-box;
+	}
+	
+a, p, span {
+	font-family: 'Raleway', sans-serif;
+	font-weight: lighter;
+	color: white;
+	text-decoration: none;
+	}
+
+h1, h2, h3, h4, h5 {
+	font-family: 'Raleway', sans-serif;
+	font-weight: normal;
+	color: white;
+	}
+
+div.header {
+	position: fixed;
+	border: 1px none orange;
+	display: inline-flex;
+	width: 100vw;
+	height: 70px;
+	top: 0;
+	background-color: #343537;
+	z-index: 3;
+	}
+
+div.header div {
+	height: inherit;
+	width: 25vw;
+	border: 1px none green;
+	text-align: center;
+	}
+
+div.header div:nth-of-type(2) {
+	width: 50vw;
+	}
+
+div.header div#navigation p {
+	position: relative;
+	top: 8px;
+	border: .5px none white;	
+	cursor: pointer;
+	}
+
+div.header div#navigation svg {
+	cursor: pointer;
+	height: 20px;
+	width: auto;
+	top: 8px;
+	position: relative;
+	fill: #A2ABAD;
+	color: #A2ABAD;
+	}	
+
+.hidden {
+	display: none;
+	}
+
+div.header div#user svg {
+	cursor: pointer;
+	height: 40px;
+	width: auto;
+	top: 8px;
+	position: relative;
+	fill: #A2ABAD;
+	}	
+
+div.header div#user svg~p {
+	margin-top: 7px;
+	font-size: 10px;
+	cursor: pointer;
+	color: #A2ABAD;
+	}
+
+div.background {
+	border: .5px none white;
+	background: center/cover no-repeat;
+	height: 100vh;
+	width: 100vw;
+	position: relative;
+	top: 0;
+	/* transition: top .4s; */
+	}
+
+div.background.list {
+	position: relative;
+	height: calc((100vh - 70px) / 7 );
+	min-height: 80px;
+	top: 70px;
+	transition: height .6s, top .6s;
+	}
+
+div.background.list div.list-view {
+	width: inherit;
+	height: inherit;
+	position: relative;
+	text-align: center;
+	padding: 2px;
+	cursor: pointer;
+	min-height: 80px;
+	
+	-webkit-backdrop-filter: blur(5px);
+	-moz-backdrop-filter: blur(5px);
+	-o-backdrop-filter: blur(5px);
+	-ms-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px); 
+	}
+
+div.background.list div.list-view.done, div.container.done {	
+	-webkit-backdrop-filter: blur(5px) grayscale(80%);
+	-moz-backdrop-filter: blur(5px) grayscale(80%);
+	-o-backdrop-filter: blur(5px) grayscale(80%);
+	-ms-backdrop-filter: blur(5px) grayscale(80%);
+	backdrop-filter: blur(5px) grayscale(80%); 
+	}
+
+div.background.list div.list-view p {
+	position: relative;
+	border: .5px none white;
+	margin-top: 5vh;
+	}
+
+div.container {
+	padding-top: 70px;
+	border: .5px none red;
+	position: absolute;
+	top: 0;
+	height: inherit;
+	width: inherit;
+	
+	-webkit-backdrop-filter: blur(10px);
+	-moz-backdrop-filter: blur(10px);
+	-o-backdrop-filter: blur(10px);
+	-ms-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px); 
+	}
+
+div.container div.riddle {
+	position: relative;
+	width: 80vw;
+	left: 10vw;
+	border: .5px none brown;
+	margin-top: 10vh;
+	text-align: center;
+	background-color: #40474F;
+	border-radius: 5px;
+	padding: 2px 4px;
+	}
+
+div.container div.solution {
+	position: relative;
+	border: .5px none green;
+	height: 50px;
+	width: 70vw;
+	left: 15vw;
+	top: 50px;
+	border-radius: 5px;
+	background-color: rgba(255,255,255,0.8);
+	}
+
+div.solution div.entry {
+	width: 55vw;
+	height: inherit;
+	border-radius: 5px;
+	/* rbackground-color: rgba(255,255,255,0.8); */
+	}
+
+div.solution div.entry input {
+	position: absolute;
+	left: 2vw;
+	top: 5px;
+	height: 40px;
+	width: 52vw;
+	font-size: 20px;
+	border: .5px none blue;
+	-webkit-appearance: none;
+	padding: 0 5px;
+	background-color: transparent;
+	}
+
+input:focus {
+	outline: none;
+	/* background-color: pink; */
+	}
+
+div.solution div.hint {
+	position: absolute;
+	width: 12vw;
+	right: 2vw;
+	height: 40px;
+	top: 5px;
+	border: .5px none orange;
+	background-color: #343537; 
+	border-radius: 3px;
+	}	
+
+div.solution div.hint svg {
+	position: absolute;
+	border: .5px none red;
+	width: inherit;
+	left: 0;
+	height: inherit;
+	cursor: pointer;
+	fill: lightgrey;
+	z-index: 2;
+	}
+
+div.solution div.submit {
+	display: none;
+	position: absolute;
+	width: 12vw;
+	right: 2vw;
+	height: 40px;
+	top: 5px;
+	border: .5px none orange;
+	/* background-color: #343537; */
+	border-radius: 3px;
+	}	
+
+div.solution div.submit svg {
+	position: absolute;
+	border: .5px none red;
+	width: inherit;
+	left: 0;
+	height: inherit;
+	cursor: pointer;
+	fill: #D55140;
+	color: white;
+	z-index: 2;
+	}	
+
+div.solution div.submit svg:hover {
+	fill: white;
+	}
+
+div.solution div.correct {
+	display: none;
+	position: absolute;
+	width: 12vw;
+	right: 2vw;
+	height: 40px;
+	top: 5px;
+	border: .5px none orange;
+	/* background-color: #343537; */
+	border-radius: 3px;
+	}	
+
+div.solution div.correct svg {
+	position: absolute;
+	border: .5px none red;
+	width: inherit;
+	left: 0;
+	height: inherit;
+	cursor: pointer;
+	fill: #343537;
+	color: white;
+	z-index: 2;
+	}
+
+div.solution div.incorrect {
+	display: none; 
+	position: absolute;
+	width: 12vw;
+	right: 2vw;
+	height: 40px;
+	top: 5px;
+	border: .5px none orange;
+	/* background-color: #343537; */
+	border-radius: 3px;
+	}	
+
+div.solution div.incorrect svg {
+	position: absolute;
+	border: .5px none red;
+	width: inherit;
+	left: 0;
+	height: inherit;
+	cursor: pointer;
+	fill: #D55140;
+	color: white;
+	z-index: 2;
+	}
+
+div.word-container {
+	position:fixed;
+	bottom: -80vh;
+	border: 1.5px none lightblue;
+	height: 75vh;
+	width: 100vw;
+	background-color: #40474F;
+	z-index: 3;
+	border-radius: 20px 20px 0 0;
+	-webkit-box-shadow: 0px -10px 10px 5px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0px -10px 10px 5px rgba(0,0,0,0.25);
+	box-shadow: 0px -10px 10px 5px rgba(0,0,0,0.25);
+	transition: bottom .4s;
+	}
+
+div.word-container.visible {
+	display: unset;	
+	bottom: 0;
+	transition: bottom .4s;
+	}
+
+div.word-container div.personal-info {
+	border: .5px none lightblue;
+	position: absolute;
+	height: 60px;
+	width: 80vw;
+	left: 10vw;
+	top: 5vh;
+	display: inline-flex;
+	text-align: center;
+	}
+
+div.personal-info div {
+	width: 20vw;
+	border: .5px none red;	
+	}
+
+div.personal-info div:nth-of-type(2) {
+	width: 30vw;
+	}
+
+div.word-container div#settings {
+	width: 30vw;
+	text-align: center;
+	}
+
+div#settings p, div#settings svg {
+	cursor: pointer;
+	}
+
+div#settings svg {
+	position: absolute;
+	height: 50px ;	
+	fill: #A2ABAD;
+	top: 0;
+	right: -3vw;
+	}
+
+div.word-container div.features {
+	position: relative;
+	border: .5px none lightblue;
+	height: auto;
+	width: 70vw;
+	left: 15vw;
+	top: 30vh;
+	text-align: center;
+	}
+
+div.word-container div.final-word {
+	border: 1px none green;
+	position: absolute;
+	bottom: 80px;
+	width: 80vw;
+	left: 10vw;
+	height: 50px;
+	display: inline-flex;
+	}
+
+div.final-word div.letter {
+	height: inherit;
+	width: 11vw;
+	border: 1px none purple;
+	background-color: white;
+	border-radius: 5px;
+	margin-right: 5px;
+	text-align: center;
+	}
+
+div.final-word div.letter span {
+	color: #1A1919;
+	position: static;
+	top: 8px;
+	position: relative;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+	}
+
+div.final-word div.letter input {
+	width: inherit;
+	height: inherit;
+	font-size: 20px;
+	border-radius: inherit;
+	border: none;
+	text-align: center;
+	text-transform: uppercase;
+	}
+
+div.settings {
+	z-index: 3;
+	position: fixed;
+	border: .5px none white;
+	background-color: rgba(214, 218, 219, 0.95);
+	width: 90vw;
+	left: 5vw;
+	height: 60vh;
+	top: 20vh;
+	border-radius: 12.5px;
+	-webkit-box-shadow: 0px 10px 50px 40px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 10px 50px 40px rgba(0,0,0,0.75);
+	box-shadow: 0px 10px 50px 40px rgba(0,0,0,0.75);
+	text-align: center;
+	}
+
+div.settings h3 {
+	color: #343537;
+	}
+
+div.settings svg#close {
+	position: absolute;
+	left: initial;
+	fill: #343537;
+	height: 35px;
+	width: auto;
+	right: 12.5px;
+	top: 12.5px;
+	cursor: pointer;
+	}
+
+div.settings div {
+	position: relative;
+	border: .5px none blue;
+	height: 50px;
+	top: 60px;
+	left: 15vw;
+	width: 60vw;
+	margin-bottom: 30px;
+	}
+
+div.settings div a {
+	position: absolute;
+	border: .5px none red;
+	top: 0;
+	width: inherit;
+	left: 0;
+	background-color: #D55140;
+	border-radius: 5px;
+	padding: 15px 9px;
+	margin-bottom: 40px;
+	}
+
+div.settings div a:hover {
+	background-color: white;
+	color: black;
+	} 
+
+@media only screen and (min-width: 440px){
+
+	div.final-word div.letter span, div.final-word div.letter input {
+		font-size: 25px;
+		}
+	}
