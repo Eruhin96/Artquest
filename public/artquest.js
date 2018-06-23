@@ -1,26 +1,38 @@
 $(document).ready(function(){
-	// Initialize Firebase
-	var config = {
-	apiKey: "AIzaSyD5NvvAb5I3kXjRgg-EgXLSDwr7BE-wIRs",
-	authDomain: "artquest-3935e.firebaseapp.com",
-	databaseURL: "https://artquest-3935e.firebaseio.com",
-	projectId: "artquest-3935e",
-	storageBucket: "artquest-3935e.appspot.com",
-	messagingSenderId: "1034727271143"
-	};
-	firebase.initializeApp(config);
 
 	$('p#name').text(sessionStorage.username);
 	var level = sessionStorage.level;
 	var counter = 0;
 	var query = firebase.database().ref(level).orderByKey();
+	var indicesClue = [];
+	var indicesClue2 = [];
+
 	query.once("value").then(function(snapshot) {
+
+	var word = snapshot.child('woord').val().toUpperCase();
+	var wordLength = parseInt(word.replace(/ /g,'').length);
+	//var letterPos = word.indexOf();
+	
+	for (var i = 0; i < word.length; i++) {
+		var letterAtI = word.charAt(i);
+		if(letterAtI !== ' ') {
+			//console.log(word.charAt(i));
+			$('div.final-word').append('<div id="" class="letter"><input type="text" maxlength="1" value="" disabled><span></span></div>');
+			}
+		else {
+			$('div.final-word').append('<div id="space" style="visibility:hidden;width:20px;" class="letter"><input type="text" maxlength="1" disabled><span></span></div>');
+			}
+		}
+
 	    snapshot.forEach(function(childSnapshot) {
 	    	var clue = childSnapshot.child('clue').val();
 	    	var imageURL = childSnapshot.child('link foto').val();
 		    var key = childSnapshot.key;
+		    var clue2 = childSnapshot.child('clue2').val();
 		    counter++;
 		    if(childSnapshot.hasChildren()){
+			    var letter = childSnapshot.child('letter').val().toUpperCase();
+
 		    	$('div.clues').append( 
 		    	'<div class="background list" style="background-image:url(' + imageURL + ');">' +
 					'<div class="container hidden">' +
@@ -31,7 +43,7 @@ $(document).ready(function(){
 
 						'<div class="solution">' +
 							'<div class="entry">' +
-								'<input type="text" placeholder="Vul titel kunstwerk in" method="GET"></input>' +
+								'<input data-index="'+ index(letter, word, indicesClue) +'" type="text" placeholder="Vul titel kunstwerk in" method="GET"></input>' +
 								
 								'<div class="hint">' +
 									'<svg id="" height="1792" viewBox="0 0 1792 1792" width="1792" xmlns="http://www.w3.org/2000/svg"">' +
@@ -54,18 +66,119 @@ $(document).ready(function(){
 						'<p>Clue ' + counter + '</p>' +
 					'</div>' +
 				'</div>');
-	    		}
+
+		   		$('div.features').append('<p id="'+counter+'" data-index="'+index(letter, word, indicesClue2)+'" data-acquired="not-yet" class="hidden">"' + clue2 + '"</p>');
+			    };
 		  	});
 
-		});
 
+		});
 	function showMenu(){
 		$('div.word-container').toggleClass('visible');
 		}
 	function closeMenu(){
 		$('div.word-container').removeClass('visible');
 		}
+	function showSettings(){
+		$('div.settings').removeClass('hidden');
+		}
+	function hideSettings(){
+		$('div.settings').addClass('hidden');
+		}
+	function id(param){
+		return $(param).data("index");
+		};
 
+	function index(letter, word, indices){
+		var index = word.indexOf(letter);
+		var times = $.grep(word, function (elem) {
+		    return elem === letter;
+			}).length;
+
+		for(var i = 0; i<times; i++){
+			if ($.inArray(index, indices) > -1){
+				index = word.indexOf(letter, index+1);
+				}
+			}
+		indices.push(index);
+		return index+1;
+		};
+
+	function prevSecondClue(rank){
+		var eq = parseInt(rank)-1;
+		var size = $('div.features p[data-acquired="yes"]').length;
+		var first = parseInt($('div.features p[data-acquired="yes"]').first()[0].id)-1;
+		var last =  parseInt($('div.features p[data-acquired="yes"]').last()[0].id);
+
+		$('div.final-word div.letter input').css("border", "1.5px none orange");
+
+		if(eq == first){eq = last};
+		$('span#clue2').text("Clue " + eq);
+		//$('span#clue2').text(last);
+		//$('span#clue2').text($('div.features p').eq(eq-1).attr("data-acquired")+"yaa");
+		//
+		for(var i = 1; i < last; i++){
+			if($('div.features p').eq(eq-i).attr("data-acquired") == "yes"){
+				var index = parseInt($('div.features p').eq(eq-i).attr("data-index"));
+				$('div.features p').addClass('hidden');
+				$('div.features p').eq(eq-i).removeClass('hidden');
+				$('span#clue2').text("Clue " + $('div.features p:not(.hidden)')[0].id);
+				$('div.final-word div.letter input').css("border", "1.5px none orange");
+				$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+				return;
+				}
+			else{
+				var index = parseInt($('div.features p').eq(last-1).attr("data-index"));
+				$('div.features p').addClass('hidden');
+				$('div.features p').eq(last-1).removeClass('hidden');
+				$('span#clue2').text("Clue " +  (last));
+				$('div.final-word div.letter input').css("border", "1.5px none orange");
+				$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+				}
+			}
+		};
+
+	function nextSecondClue(rank){
+		var eq = parseInt(rank)-1;
+		var size = $('div.features p[data-acquired="yes"]').length - 1;
+		var first = parseInt($('div.features p[data-acquired="yes"]').first()[0].id)-1;
+		var last = parseInt($('div.features p[data-acquired="yes"]').last()[0].id);
+
+
+		if(eq == last){eq = -1};
+		$('span#clue2').text("Clue " + (eq+2));
+		//$('span#clue2').text(first);
+		//$('span#clue2').text($('div.features p').eq(eq+1).attr("data-acquired")+"yaa");
+		//
+		for(var i = 1; i < last+1; i++){
+			if($('div.features p').eq(eq+i).attr("data-acquired") == "yes"){
+				var index = parseInt($('div.features p').eq(eq+i).attr("data-index"));
+				$('div.features p').addClass('hidden');
+				$('div.features p').eq(eq+i).removeClass('hidden');
+				$('span#clue2').text("Clue " + $('div.features p:not(.hidden)')[0].id);
+				$('div.final-word div.letter input').css("border", "1.5px none orange");
+				$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+				return;
+				}
+			else{
+				var index = parseInt($('div.features p').eq(first).attr("data-index"));
+				$('div.features p').addClass('hidden');
+				$('div.features p').eq(first).removeClass('hidden');
+				$('span#clue2').text("Clue " +  (first+1));
+				$('div.final-word div.letter input').css("border", "1.5px none orange");
+				$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+				}
+			}
+		};
+
+	$('div.features svg#up').on('click', function(){
+			//$('p#home, p#back').text($(this).siblings('div.features p:not(.hidden)')[0].id);
+			prevSecondClue($(this).siblings('div.features p:not(.hidden)')[0].id);
+			});
+	$('div.features svg#down').on('click', function(){
+			//$('p#home, p#back').text($(this).siblings('div.features p:not(.hidden)')[0].id);
+			nextSecondClue($(this).siblings('div.features p:not(.hidden)')[0].id);
+			});
 
 	$('div.clues').on('focus', 'div.solution div.entry input', function(){
 		if($(this).val().length == 0){
@@ -110,7 +223,25 @@ $(document).ready(function(){
 			        $(this).attr("disabled", "disabled");
 
 			        if($(this).val().toUpperCase() == "RIJKSMUSEUM"){						
-			        	setTimeout(function(){showMenu();$('div.final-word div.letter input').focus();},300);
+			        	var index = (id(this));	
+						var rank = $(this).parents('div.background').index();
+			        	
+			        	setTimeout(function(){
+			        		showMenu();
+			        		$('div.final-word div.letter:nth-of-type('+index+') input').removeAttr('disabled');
+			        		//getSeocondClue();
+			        		$('div.features P').eq(rank).attr("data-acquired", "yes");
+				    		$('div.features p').addClass('hidden');
+			        		$('div.features p').eq(rank).removeClass('hidden');
+			        		if($('div.features p[data-acquired="yes"]').length > 1){
+				        		$('div.features svg#up').removeClass('hidden');
+				        		$('div.features svg#down').removeClass('hidden');
+					        	}		
+    						$('span#clue2').text("Clue " + (rank+1));
+						        },300);
+						
+
+
 						$(this).nextAll('div.solution div.hint').css('display','none');
 						$(this).nextAll('div.solution div.submit').css('display','none');
 						$(this).nextAll('div.solution div.correct').css('display','unset');
@@ -137,8 +268,26 @@ $(document).ready(function(){
 		});
 
 	$('div.clues').on('click', 'div.solution div.submit',function(){
-		if($(this).siblings('div.solution div.entry input').val().toUpperCase() == "RIJKSMUSEUM"){			
-			setTimeout(function(){showMenu();$('div.final-word div.letter input').focus();},300);
+		if($(this).siblings('div.solution div.entry input').val().toUpperCase() == "RIJKSMUSEUM"){
+			var index = id($(this).siblings('div.solution div.entry input'));	
+			var rank = $(this).parents('div.background').index();		
+			
+			setTimeout(function(){
+				showMenu();
+				$('div.final-word div.letter:nth-of-type('+index+') input').removeAttr('disabled');
+				//getSeocondClue();
+        		$('div.features P').eq(rank).attr("data-acquired", "yes");
+	    		$('div.features p').addClass('hidden');
+        		$('div.features p').eq(rank).removeClass('hidden');
+        		if($('div.features p[data-acquired="yes"]').length > 1){
+	        		$('div.features svg#up').removeClass('hidden');
+	        		$('div.features svg#down').removeClass('hidden');
+		        	}		
+				$('span#clue2').text("Clue " + (rank+1));
+			        },300);
+	        
+
+
 	        $(this).siblings('div.solution div.entry input').attr("disabled", "disabled");
 			$(this).prev('div.solution div.hint').css('display','none');
 			$(this).css('display','none');
@@ -158,7 +307,7 @@ $(document).ready(function(){
 			}
 		});
 
-	$('div.clues').on('click', 'div.background.list div.list-view',  function(){
+	$('div.clues').on('click', 'div.background.list div.list-view', function(){
 		$(this).parent('div.background.list').removeClass('list');
 		$(this).prev('div.container.hidden').removeClass('hidden');
 		$(this).addClass('hidden');
@@ -169,10 +318,12 @@ $(document).ready(function(){
 		$('div.header div p#home').addClass('hidden');
 		$('div.header div p#back').removeClass('hidden');
 		closeMenu();
+		hideSettings();
 		});
 
 	$('div.header div p#back').click(function(){
 		closeMenu();
+		hideSettings();
 		$('div.background').addClass('list');
 		$('div.container').addClass('hidden');
 		$('div.background div.list-view').removeClass('hidden');
@@ -186,10 +337,11 @@ $(document).ready(function(){
 
 	$('div.header div svg, div.header div svg~p' ).click(function(){
 		showMenu();
+		hideSettings();
 		});
 
 	$('div#settings p, div#settings svg').click(function(){
-		$('div.settings').removeClass('hidden');
+		showSettings();
 		});
 
 	$('div.settings svg#close').click(function(){

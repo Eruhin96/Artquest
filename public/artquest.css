@@ -75,10 +75,11 @@ div.header div#user svg {
 	top: 8px;
 	position: relative;
 	fill: #A2ABAD;
+	stroke: #A2ABAD;
 	}	
 
 div.header div#user svg~p {
-	margin-top: 7px;
+	margin-top: 4px;
 	font-size: 10px;
 	cursor: pointer;
 	color: #A2ABAD;
@@ -330,6 +331,20 @@ div.personal-info div {
 	border: .5px none red;	
 	}
 
+div.personal-info div#name svg {
+	height: 50px;
+	width: auto;
+	position: relative;
+	fill: white;
+	top: -4px;
+	}
+
+div.personal-info div#name p {
+	margin-top: 2px;
+	font-size: 13px;
+	cursor: default;
+	}
+
 div.personal-info div:nth-of-type(2) {
 	width: 30vw;
 	}
@@ -354,21 +369,51 @@ div#settings svg {
 div.word-container div.features {
 	position: relative;
 	border: .5px none lightblue;
-	height: auto;
+	height: 70px;
+	overflow-x: initial;
 	width: 70vw;
 	left: 15vw;
-	top: 30vh;
+	top: 20vh;
 	text-align: center;
+	padding: 3px 10px;
+	}
+
+div.features svg {
+	position: absolute;
+	right: -35px;
+	fill: #A2ABAD;
+	height: 15px;
+	cursor: pointer;
+	}
+
+div.features svg#up{
+	transform: rotate(90deg);
+	top: 10px;
+	}
+
+div.features svg#down{
+	transform: rotate(270deg);
+	bottom: 10px;
+	}
+
+div.features span#clue2 {
+	position: absolute;
+	top: -10px;
+	left: 0;
+	font-size: 15px;
+	color: #343537;
 	}
 
 div.word-container div.final-word {
 	border: 1px none green;
-	position: absolute;
-	bottom: 120px;
-	width: 80vw;
-	left: 10vw;
-	height: 50px;
+	position: relative;
+	top: 35vh;
+	width: calc(7 * 11vw + 6 * 7px);
+	left: calc((100vw - (7 * 11vw + 6 * 7px)) / 2);
 	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	height: 50px;
 	}
 
 div.final-word div.letter {
@@ -378,6 +423,7 @@ div.final-word div.letter {
 	background-color: white;
 	border-radius: 5px;
 	margin-right: 5px;
+	margin-bottom: 5px;
 	text-align: center;
 	}
 
@@ -385,7 +431,7 @@ div.final-word div.letter span {
 	color: #1A1919;
 	position: static;
 	top: 8px;
-	position: relative;
+	position: static;
 	font-size: 20px;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -399,7 +445,38 @@ div.final-word div.letter input {
 	border: none;
 	text-align: center;
 	text-transform: uppercase;
+	bacground: #38B9EA;
+	background: linear-gradient(135deg, #21BCB2, #38B9EA);
+	color: white;
 	}
+
+div.final-word div.letter input:focus {
+	background: white;
+	color: #1A1919;
+	}
+
+div.final-word div.letter input:disabled {
+	background: white;
+	background-color: white;
+	color: #1A1919;
+	} 
+
+div.word-container a.enter {
+	border: .5px none white;
+	background: #D55140;
+	position: absolute;
+	top: 65vh;
+	right: 10vw;
+	width: 20vw;
+	text-align: center;
+	border-radius: 5px;
+	padding: 10px;
+	}
+
+div.word-container a.enter:hover {
+	background-color: white;
+	color: black;
+	} 
 
 div.settings {
 	z-index: 3;
