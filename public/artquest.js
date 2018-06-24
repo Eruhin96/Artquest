@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 
 	$('p#name').text(sessionStorage.username);
 	var level = sessionStorage.level;
@@ -27,11 +28,16 @@ $(document).ready(function(){
 	    snapshot.forEach(function(childSnapshot) {
 	    	var clue = childSnapshot.child('clue').val();
 	    	var imageURL = childSnapshot.child('link foto').val();
-		    var key = childSnapshot.key;
+		    var ans = childSnapshot.key;
 		    var clue2 = childSnapshot.child('clue2').val();
+		    var hint1 = childSnapshot.child('hint 1').val();
+		    var hint2 = childSnapshot.child('hint 2').val();
+		    var hint3 = childSnapshot.child('hint 3').val();
 		    counter++;
 		    if(childSnapshot.hasChildren()){
-			    var letter = childSnapshot.child('letter').val().toUpperCase();
+			    if(level != "Easy"){
+			    	var letter = childSnapshot.child('letter').val().toUpperCase();}
+			    else{letter = ""}
 
 		    	$('div.clues').append( 
 		    	'<div class="background list" style="background-image:url(' + imageURL + ');">' +
@@ -41,20 +47,30 @@ $(document).ready(function(){
 								'<p>"' + clue + '"</p>' +
 						'</div>' +
 
+						'<div class="hints">' +
+							'<p class="hint hidden" data-hint="off" id="1">' + hint1 + '</p>' +
+							'<p class="hint hidden" data-hint="off" id="2">' + hint2 + '</p>' +
+							'<p class="hint hidden" data-hint="off" id="3">' + hint3 + '</p>' +
+						'</div>' +
+
 						'<div class="solution">' +
 							'<div class="entry">' +
 								'<input data-index="'+ index(letter, word, indicesClue) +'" type="text" placeholder="Vul titel kunstwerk in" method="GET"></input>' +
 								
 								'<div class="hint">' +
-									'<svg id="" height="1792" viewBox="0 0 1792 1792" width="1792" xmlns="http://www.w3.org/2000/svg"">' +
-										'<path d="M1088 1256v240q0 16-12 28t-28 12h-240q-16 0-28-12t-12-28v-240q0-16 12-28t28-12h240q16 0 28 12t12 28zm316-600q0 54-15.5 101t-35 76.5-55 59.5-57.5 43.5-61 35.5q-41 23-68.5 65t-27.5 67q0 17-12 32.5t-28 15.5h-240q-15 0-25.5-18.5t-10.5-37.5v-45q0-83 65-156.5t143-108.5q59-27 84-56t25-76q0-42-46.5-74t-107.5-32q-65 0-108 29-35 25-107 115-13 16-31 16-12 0-25-8l-164-125q-13-10-15.5-25t5.5-28q160-266 464-266 80 0 161 31t146 83 106 127.5 41 158.5z"/>' +
-									'</svg>' +
+									'<svg style="enable-background:new 0 0 250 250;" version="1.1" viewBox="0 0 250 250" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">' +
+										'.st0{fill:#FCC12D;}' +
+										'.st1{fill:#46E6F2;}' +
+										'.st2{fill:none;stroke:#231F20;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}' +
+										'.st3{fill:#FFFFFF;}' +
+										'.st4{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}' +
+									'</style><path class="st0" d="M167.1,111c0-24.2-20.9-43.5-45.7-40.7c-18.5,2.1-33.6,16.9-36,35.4  c-1.5,11.5,1.9,22.2,8.3,30.4c7.3,9.4,11,21.2,11,33.2v1.7h42.8v-1.7c0-12.4,4.4-24.2,11.7-34.1C164.2,128.4,167.1,120.1,167.1,111z  " id="XMLID_19_"/><path class="st1" d="M146.2,182h-40.4c-3,0-5.5-2.4-5.5-5.5l0,0c0-3,2.4-5.5,5.5-5.5h40.4c3,0,5.5,2.4,5.5,5.5l0,0  C151.7,179.5,149.2,182,146.2,182z" id="XMLID_18_"/><path class="st1" d="M143.2,192.8h-34.5c-2.8,0-5-2.3-5-5v-0.6c0-2.8,2.3-5,5-5h34.5c2.8,0,5,2.3,5,5v0.6  C148.3,190.5,146,192.8,143.2,192.8z" id="XMLID_17_"/><path class="st1" d="M111.8,195.4v0.1c0,4.5,3.6,8.1,8.1,8.1h12.2c4.5,0,8.1-3.6,8.1-8.1v-0.1c0-1.4-1.2-2.6-2.6-2.6  h-23.2C113,192.8,111.8,194,111.8,195.4z" id="XMLID_16_"/><path class="st2" d="M164,107.9c0-24.2-20.9-43.5-45.7-40.7c-18.5,2.1-33.6,16.9-36,35.4  c-1.5,11.5,1.9,22.2,8.3,30.4c7.3,9.4,11,21.2,11,33.2v1.7h42.8v-1.7c0-12.4,4.4-24.2,11.7-34.1C161.1,125.3,164,116.9,164,107.9z" id="XMLID_15_"/><path class="st2" d="M140.1,189.6h-34.5c-2.8,0-5-2.3-5-5V184c0-2.8,2.3-5,5-5h34.5c2.8,0,5,2.3,5,5v0.6  C145.1,187.4,142.9,189.6,140.1,189.6z" id="XMLID_14_"/><path class="st2" d="M108.6,192.2v0.1c0,4.5,3.6,8.1,8.1,8.1h12.2c4.5,0,8.1-3.6,8.1-8.1v-0.1c0-1.4-1.2-2.6-2.6-2.6  h-23.2C109.8,189.6,108.6,190.8,108.6,192.2z" id="XMLID_13_"/><ellipse class="st3" cx="102.1" cy="91.9" id="XMLID_12_" rx="6.9" ry="11.8" transform="matrix(0.7723 0.6352 -0.6352 0.7723 81.5971 -43.9285)"/><polyline class="st4" id="XMLID_11_" points="132.1,130 123,167.1 114,130 "/><path class="st4" d="M106.7,125.5c4.1,0,4.1,3.4,8.1,3.4c4.1,0,4.1-3.4,8.1-3.4c4.1,0,4.1,3.4,8.1,3.4  c4.1,0,4.1-3.4,8.1-3.4" id="XMLID_10_"/><line class="st2" id="XMLID_9_" x1="123" x2="123" y1="56.5" y2="40.8"/><line class="st2" id="XMLID_8_" x1="150.9" x2="158" y1="60.2" y2="46.2"/><line class="st2" id="XMLID_7_" x1="169.9" x2="179.3" y1="75.9" y2="69.7"/><line class="st2" id="XMLID_6_" x1="176.7" x2="184.3" y1="97.8" y2="96.6"/><line class="st2" id="XMLID_5_" x1="95.1" x2="88" y1="60.2" y2="46.2"/><line class="st2" id="XMLID_4_" x1="76.1" x2="66.7" y1="75.9" y2="69.7"/><line class="st2" id="XMLID_3_" x1="69.3" x2="61.7" y1="97.8" y2="96.6"/><path class="st2" d="M143,178.8h-40.4c-3,0-5.5-2.4-5.5-5.5v0c0-3,2.4-5.5,5.5-5.5H143c3,0,5.5,2.4,5.5,5.5v0  C148.5,176.4,146,178.8,143,178.8z" id="XMLID_2_"/></svg>' + 
 								'</div>' +
 								'<div class="submit">' +
 									'<svg height="1792" viewBox="0 0 1792 1792" width="1792" xmlns="http://www.w3.org/2000/svg"><path d="M1413 896q0-27-18-45l-91-91-362-362q-18-18-45-18t-45 18l-91 91q-18 18-18 45t18 45l189 189h-502q-26 0-45 19t-19 45v128q0 26 19 45t45 19h502l-189 189q-19 19-19 45t19 45l91 91q18 18 45 18t45-18l362-362 91-91q18-18 18-45zm251 0q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/></svg>' +
 								'</div>' +
 								'<div class="correct">' +
-									'<svg contentScriptType="text/ecmascript" contentStyleType="text/css" enable-background="new 0 0 2048 2048" height="2048px" id="Layer_1" preserveAspectRatio="xMidYMid meet" version="1.1" viewBox="121.0 0 1550.0 2048" width="1550.0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="magnify"><path d="M1671,694c0,26.667-9.333,49.333-28,68l-724,724l-136,136c-18.667,18.667-41.333,28-68,28s-49.333-9.333-68-28l-136-136  l-362-362c-18.667-18.667-28-41.333-28-68s9.333-49.333,28-68l136-136c18.667-18.667,41.333-28,68-28s49.333,9.333,68,28l294,295  l656-657c18.667-18.667,41.333-28,68-28s49.333,9.333,68,28l136,136C1661.667,644.667,1671,667.333,1671,694z"/></svg>' +
+									'<svg data-correct="'+ ans +'" contentScriptType="text/ecmascript" contentStyleType="text/css" enable-background="new 0 0 2048 2048" height="2048px" id="Layer_1" preserveAspectRatio="xMidYMid meet" version="1.1" viewBox="121.0 0 1550.0 2048" width="1550.0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="magnify"><path d="M1671,694c0,26.667-9.333,49.333-28,68l-724,724l-136,136c-18.667,18.667-41.333,28-68,28s-49.333-9.333-68-28l-136-136  l-362-362c-18.667-18.667-28-41.333-28-68s9.333-49.333,28-68l136-136c18.667-18.667,41.333-28,68-28s49.333,9.333,68,28l294,295  l656-657c18.667-18.667,41.333-28,68-28s49.333,9.333,68,28l136,136C1661.667,644.667,1671,667.333,1671,694z"/></svg>' +
 								'</div>' +
 								'<div class="incorrect">' +
 									'<svg contentScriptType="text/ecmascript" contentStyleType="text/css" enable-background="new 0 0 2048 2048" height="2048px" id="Layer_1" preserveAspectRatio="xMidYMid meet" version="1.1" viewBox="110.0 0 1188.0 2048" width="1188.0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="magnify"><path d="M1298,1450c0,26.667-9.333,49.333-28,68l-136,136c-18.667,18.667-41.333,28-68,28s-49.333-9.333-68-28l-294-294l-294,294  c-18.667,18.667-41.333,28-68,28s-49.333-9.333-68-28l-136-136c-18.667-18.667-28-41.333-28-68s9.333-49.333,28-68l294-294L138,794  c-18.667-18.667-28-41.333-28-68s9.333-49.333,28-68l136-136c18.667-18.667,41.333-28,68-28s49.333,9.333,68,28l294,294l294-294  c18.667-18.667,41.333-28,68-28s49.333,9.333,68,28l136,136c18.667,18.667,28,41.333,28,68s-9.333,49.333-28,68l-294,294l294,294  C1288.667,1400.667,1298,1423.333,1298,1450z"/></svg>' +
@@ -123,8 +139,11 @@ $(document).ready(function(){
 				$('div.features p').addClass('hidden');
 				$('div.features p').eq(eq-i).removeClass('hidden');
 				$('span#clue2').text("Clue " + $('div.features p:not(.hidden)')[0].id);
-				$('div.final-word div.letter input').css("border", "1.5px none orange");
-				$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+
+			    if(level != "Easy"){
+					$('div.final-word div.letter input').css("border", "1.5px none orange");
+					$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+				    }
 				return;
 				}
 			else{
@@ -132,8 +151,11 @@ $(document).ready(function(){
 				$('div.features p').addClass('hidden');
 				$('div.features p').eq(last-1).removeClass('hidden');
 				$('span#clue2').text("Clue " +  (last));
-				$('div.final-word div.letter input').css("border", "1.5px none orange");
-				$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+
+			    if(level != "Easy"){
+					$('div.final-word div.letter input').css("border", "1.5px none orange");
+					$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+				    }
 				}
 			}
 		};
@@ -156,8 +178,11 @@ $(document).ready(function(){
 				$('div.features p').addClass('hidden');
 				$('div.features p').eq(eq+i).removeClass('hidden');
 				$('span#clue2').text("Clue " + $('div.features p:not(.hidden)')[0].id);
-				$('div.final-word div.letter input').css("border", "1.5px none orange");
-				$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+			    
+			    if(level != "Easy"){
+				    $('div.final-word div.letter input').css("border", "1.5px none orange");
+					$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+					}
 				return;
 				}
 			else{
@@ -165,8 +190,11 @@ $(document).ready(function(){
 				$('div.features p').addClass('hidden');
 				$('div.features p').eq(first).removeClass('hidden');
 				$('span#clue2').text("Clue " +  (first+1));
-				$('div.final-word div.letter input').css("border", "1.5px none orange");
-				$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+			    
+			    if(level != "Easy"){
+				    $('div.final-word div.letter input').css("border", "1.5px none orange");
+					$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+					}
 				}
 			}
 		};
@@ -221,14 +249,20 @@ $(document).ready(function(){
 
 			        //Disable textbox to prevent multiple submit
 			        $(this).attr("disabled", "disabled");
+					//$(this).val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));
 
-			        if($(this).val().toUpperCase() == "RIJKSMUSEUM"){						
+			        if($(this).val().toUpperCase() == $(this).parent('div.solution div.entry').children('div.correct').children('div.correct svg').attr('data-correct').toUpperCase()  || $(this).val().toUpperCase() == $(this).parent('div.solution div.entry').children('div.correct').children('div.correct svg').attr('data-correct').toUpperCase() + " "){						
 			        	var index = (id(this));	
 						var rank = $(this).parents('div.background').index();
 			        	
 			        	setTimeout(function(){
 			        		showMenu();
-			        		$('div.final-word div.letter:nth-of-type('+index+') input').removeAttr('disabled');
+						    if(level != "Easy"){
+						    	$('div.final-word div.letter:nth-of-type('+index+') input').removeAttr('disabled');
+							    }
+						    else{
+								$('div.final-word div.letter input').removeAttr('disabled');
+							    }
 			        		//getSeocondClue();
 			        		$('div.features P').eq(rank).attr("data-acquired", "yes");
 				    		$('div.features p').addClass('hidden');
@@ -238,9 +272,12 @@ $(document).ready(function(){
 				        		$('div.features svg#down').removeClass('hidden');
 					        	}		
     						$('span#clue2').text("Clue " + (rank+1));
-						        },300);
-						
 
+							if($('div.features p[data-acquired="yes"]').length >= $('div.features p[data-acquired="not-yet"]').length){
+								$('div.word-container a.enter').removeClass('hidden');
+								}
+					        },300);
+						
 
 						$(this).nextAll('div.solution div.hint').css('display','none');
 						$(this).nextAll('div.solution div.submit').css('display','none');
@@ -267,14 +304,26 @@ $(document).ready(function(){
 			}
 		});
 
+	$('div.clues').on('click', 'div.solution div.hint svg', function(){
+		$(this).parents('div.container div.solution').siblings('div.container div.hints').children('div.hints p[data-hint="off"]').first().attr('data-hint', 'on').removeClass('hidden');
+		});
+
 	$('div.clues').on('click', 'div.solution div.submit',function(){
-		if($(this).siblings('div.solution div.entry input').val().toUpperCase() == "RIJKSMUSEUM"){
+
+		//$(this).siblings('div.solution div.entry input').val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));
+
+		if($(this).siblings('div.solution div.entry input').val().toUpperCase() == $(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct').toUpperCase() || $(this).siblings('div.solution div.entry input').val().toUpperCase() == $(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct').toUpperCase() + " " ){
 			var index = id($(this).siblings('div.solution div.entry input'));	
 			var rank = $(this).parents('div.background').index();		
 			
 			setTimeout(function(){
 				showMenu();
-				$('div.final-word div.letter:nth-of-type('+index+') input').removeAttr('disabled');
+			    if(level != "Easy"){
+			    	$('div.final-word div.letter:nth-of-type('+index+') input').removeAttr('disabled');
+				    }
+			    else{
+					$('div.final-word div.letter input').removeAttr('disabled');
+				    }
 				//getSeocondClue();
         		$('div.features P').eq(rank).attr("data-acquired", "yes");
 	    		$('div.features p').addClass('hidden');
@@ -284,9 +333,12 @@ $(document).ready(function(){
 	        		$('div.features svg#down').removeClass('hidden');
 		        	}		
 				$('span#clue2').text("Clue " + (rank+1));
-			        },300);
-	        
 
+				if($('div.features p[data-acquired="yes"]').length >= $('div.features p[data-acquired="not-yet"]').length){
+					$('div.word-container a.enter').removeClass('hidden');
+					}
+			    },300);
+	        
 
 	        $(this).siblings('div.solution div.entry input').attr("disabled", "disabled");
 			$(this).prev('div.solution div.hint').css('display','none');
@@ -319,6 +371,11 @@ $(document).ready(function(){
 		$('div.header div p#back').removeClass('hidden');
 		closeMenu();
 		hideSettings();
+		});
+
+	$('div.word-container a.enter').on('click', function(){
+		$('div.final-word div.letter input').removeAttr('disabled');
+
 		});
 
 	$('div.header div p#back').click(function(){

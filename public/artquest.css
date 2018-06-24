@@ -158,6 +158,34 @@ div.container div.riddle {
 	background-color: #40474F;
 	border-radius: 5px;
 	padding: 2px 4px;
+	margin-bottom: 10px;
+	}
+
+div.container div.hints {
+	border: .5px none white;
+	position: relative;
+	height: auto;
+	min-height: 40px;
+	width: 60vw;
+	left: 20vw;
+	cursor: default;
+	}
+
+div.container div.hints svg {
+	position: relative;
+	height: 20px;
+	width: auto;
+	}
+
+div.container div.hints p {	
+	position: relative;
+	left: 5vw;
+	width: 55vw;
+	text-align: center;
+	background-color: #A2ABAD;
+	border-radius: 5px;
+	padding: 4px 0;
+	cursor: default;
 	}
 
 div.container div.solution {
@@ -166,7 +194,7 @@ div.container div.solution {
 	height: 50px;
 	width: 70vw;
 	left: 15vw;
-	top: 50px;
+	top: 10px;
 	border-radius: 5px;
 	background-color: rgba(255,255,255,0.8);
 	}
