@@ -493,9 +493,9 @@ div.word-container a.enter {
 	border: .5px none white;
 	background: #D55140;
 	position: absolute;
-	top: 65vh;
+	top: 62vh;
 	right: 10vw;
-	width: 20vw;
+	width: 30vw;
 	text-align: center;
 	border-radius: 5px;
 	padding: 10px;
@@ -513,13 +513,15 @@ div.settings {
 	background-color: rgba(214, 218, 219, 0.95);
 	width: 90vw;
 	left: 5vw;
-	height: 60vh;
+	min-height: 60vh;
 	top: 20vh;
 	border-radius: 12.5px;
 	-webkit-box-shadow: 0px 10px 50px 40px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 10px 50px 40px rgba(0,0,0,0.75);
 	box-shadow: 0px 10px 50px 40px rgba(0,0,0,0.75);
 	text-align: center;
+	padding-bottom: 10vh;
+	overflow-y: scroll; 
 	}
 
 div.settings h3 {
@@ -540,11 +542,13 @@ div.settings svg#close {
 div.settings div {
 	position: relative;
 	border: .5px none blue;
-	height: 50px;
+	min-height: 50px;
+	height: auto;
 	top: 60px;
 	left: 15vw;
 	width: 60vw;
 	margin-bottom: 30px;
+	transition: top .2s;
 	}
 
 div.settings div a {
@@ -556,7 +560,6 @@ div.settings div a {
 	background-color: #D55140;
 	border-radius: 5px;
 	padding: 15px 9px;
-	margin-bottom: 40px;
 	}
 
 div.settings div a:hover {
@@ -564,9 +567,50 @@ div.settings div a:hover {
 	color: black;
 	} 
 
+div.settings div p {
+	position: relative;
+	top: 65px;
+	color: black;
+	height: 15px;
+	cursor: pointer;
+	}
+
+div.settings div.inactive-1 {
+	top: 110px;
+	transition: top .1s;
+	}
+
+div.settings div.inactive-2 {
+	top: -5px;
+	transition: top .1s;
+	}
+
+div.settings div input {
+	border: .5px solid #1A1919;
+	position: relative;
+	top: 80px;
+	width: 45vw;
+	font-size: 18px;
+	padding: 10px 10px;
+	left: -5vw;
+	}
+
+div.settings div.name-change svg {
+	position: absolute;
+	border: .5px none red;
+	top: 82px;
+	width: auto;
+	right: .5vw;
+	height: 40px;
+	cursor: pointer;
+	fill: #D55140;
+	color: white;
+	z-index: 1;
+	}	
+
 @media only screen and (min-width: 440px){
 
-	div.final-word div.letter span, div.final-word div.letter input {
+	div.final-word div.letter span, div.final-word div.letter input{
 		font-size: 25px;
 		}
 	}

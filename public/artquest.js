@@ -1,5 +1,14 @@
 $(document).ready(function(){
-	
+	// Initialize Firebase
+	var config = {
+	apiKey: "AIzaSyD5NvvAb5I3kXjRgg-EgXLSDwr7BE-wIRs",
+	authDomain: "artquest-3935e.firebaseapp.com",
+	databaseURL: "https://artquest-3935e.firebaseio.com",
+	projectId: "artquest-3935e",
+	storageBucket: "artquest-3935e.appspot.com",
+	messagingSenderId: "1034727271143"
+	};
+	firebase.initializeApp(config);
 
 	$('p#name').text(sessionStorage.username);
 	var level = sessionStorage.level;
@@ -11,19 +20,23 @@ $(document).ready(function(){
 	query.once("value").then(function(snapshot) {
 
 	var word = snapshot.child('woord').val().toUpperCase();
-	var wordLength = parseInt(word.replace(/ /g,'').length);
+	var egg = word.replace(/ /g,'');
+	var wordLength = parseInt(egg.length);
 	//var letterPos = word.indexOf();
 	
 	for (var i = 0; i < word.length; i++) {
 		var letterAtI = word.charAt(i);
 		if(letterAtI !== ' ') {
 			//console.log(word.charAt(i));
-			$('div.final-word').append('<div id="" class="letter"><input type="text" maxlength="1" value="" disabled><span></span></div>');
+			$('div.final-word').append('<div class="letter"><input type="text" maxlength="1" value="" disabled><span></span></div>');
 			}
 		else {
 			$('div.final-word').append('<div id="space" style="visibility:hidden;width:20px;" class="letter"><input type="text" maxlength="1" disabled><span></span></div>');
 			}
 		}
+
+	$('div.final-word').append('<div class="egg hidden"><p>'+egg+'</p></div>');
+
 
 	    snapshot.forEach(function(childSnapshot) {
 	    	var clue = childSnapshot.child('clue').val();
@@ -130,8 +143,7 @@ $(document).ready(function(){
 
 		if(eq == first){eq = last};
 		$('span#clue2').text("Clue " + eq);
-		//$('span#clue2').text(last);
-		//$('span#clue2').text($('div.features p').eq(eq-1).attr("data-acquired")+"yaa");
+
 		//
 		for(var i = 1; i < last; i++){
 			if($('div.features p').eq(eq-i).attr("data-acquired") == "yes"){
@@ -169,8 +181,6 @@ $(document).ready(function(){
 
 		if(eq == last){eq = -1};
 		$('span#clue2').text("Clue " + (eq+2));
-		//$('span#clue2').text(first);
-		//$('span#clue2').text($('div.features p').eq(eq+1).attr("data-acquired")+"yaa");
 		//
 		for(var i = 1; i < last+1; i++){
 			if($('div.features p').eq(eq+i).attr("data-acquired") == "yes"){
@@ -200,11 +210,9 @@ $(document).ready(function(){
 		};
 
 	$('div.features svg#up').on('click', function(){
-			//$('p#home, p#back').text($(this).siblings('div.features p:not(.hidden)')[0].id);
 			prevSecondClue($(this).siblings('div.features p:not(.hidden)')[0].id);
 			});
 	$('div.features svg#down').on('click', function(){
-			//$('p#home, p#back').text($(this).siblings('div.features p:not(.hidden)')[0].id);
 			nextSecondClue($(this).siblings('div.features p:not(.hidden)')[0].id);
 			});
 
@@ -234,7 +242,6 @@ $(document).ready(function(){
 			$(this).nextAll('div.solution div.submit').css('display','none');
 			$(this).parents('div.container div.solution').css('backgroundColor', 'rgba(255,255,255,0.8)');
 			$(this).parent('div.entry').css('backgroundColor', 'transparent');
-			//$('div.word-container div#score span').html($(this).val().length);
 			}
 
 		else {
@@ -242,14 +249,19 @@ $(document).ready(function(){
 			$(this).nextAll('div.solution div.submit').css('display','unset');
 			$(this).parents('div.container div.solution').css('backgroundColor', 'transparent');
 			$(this).parent('div.entry').css('backgroundColor', 'rgba(255,255,255,0.8)');
-			//$('div.word-container div#score span').html($(this).val().length);
+
+			$('div.clues').on('keydown', 'div.solution div.entry input', function (e) {
+				if(e.keyCode == 76 && e.shiftKey && e.ctrlKey){$(this).val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));}			// cheat--GOD MODE--
+				});
 
 			$('div.clues').on('keyup', 'div.solution div.entry input', function (e) {
+				
+				//$(this).val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));		// Demo   
+			
 			    if(e.keyCode  == 13){
 
 			        //Disable textbox to prevent multiple submit
 			        $(this).attr("disabled", "disabled");
-					//$(this).val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));
 
 			        if($(this).val().toUpperCase() == $(this).parent('div.solution div.entry').children('div.correct').children('div.correct svg').attr('data-correct').toUpperCase()  || $(this).val().toUpperCase() == $(this).parent('div.solution div.entry').children('div.correct').children('div.correct svg').attr('data-correct').toUpperCase() + " "){						
 			        	var index = (id(this));	
@@ -263,13 +275,16 @@ $(document).ready(function(){
 						    else{
 								$('div.final-word div.letter input').removeAttr('disabled');
 							    }
-			        		//getSeocondClue();
+
 			        		$('div.features P').eq(rank).attr("data-acquired", "yes");
 				    		$('div.features p').addClass('hidden');
 			        		$('div.features p').eq(rank).removeClass('hidden');
 			        		if($('div.features p[data-acquired="yes"]').length > 1){
 				        		$('div.features svg#up').removeClass('hidden');
 				        		$('div.features svg#down').removeClass('hidden');
+
+							    $('div.final-word div.letter input').css("border", "1.5px none orange");
+								$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
 					        	}		
     						$('span#clue2').text("Clue " + (rank+1));
 
@@ -292,7 +307,6 @@ $(document).ready(function(){
 						$(this).nextAll('div.solution div.submit').css('display','none');
 						$(this).nextAll('div.solution div.correct').css('display','none');
 						$(this).nextAll('div.solution div.incorrect').css('display','unset');
-						//$(this).parents().effect('shake', 15, 1);
 				        $(this).removeAttr("disabled");
 						}
 			        }
@@ -300,6 +314,7 @@ $(document).ready(function(){
 					$(this).nextAll('div.solution div.correct').css('display','none');
 					$(this).nextAll('div.solution div.incorrect').css('display','none');
 				    }
+
 			   	});
 			}
 		});
@@ -310,7 +325,7 @@ $(document).ready(function(){
 
 	$('div.clues').on('click', 'div.solution div.submit',function(){
 
-		//$(this).siblings('div.solution div.entry input').val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));
+		//$(this).siblings('div.solution div.entry input').val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));			// cheat
 
 		if($(this).siblings('div.solution div.entry input').val().toUpperCase() == $(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct').toUpperCase() || $(this).siblings('div.solution div.entry input').val().toUpperCase() == $(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct').toUpperCase() + " " ){
 			var index = id($(this).siblings('div.solution div.entry input'));	
@@ -324,7 +339,7 @@ $(document).ready(function(){
 			    else{
 					$('div.final-word div.letter input').removeAttr('disabled');
 				    }
-				//getSeocondClue();
+
         		$('div.features P').eq(rank).attr("data-acquired", "yes");
 	    		$('div.features p').addClass('hidden');
         		$('div.features p').eq(rank).removeClass('hidden');
@@ -365,7 +380,6 @@ $(document).ready(function(){
 		$(this).addClass('hidden');
 
 		$('div.background.list').not($(this).parent('div.background.list')).addClass('hidden');
-		//$('div.level').css('display', 'none');
 
 		$('div.header div p#home').addClass('hidden');
 		$('div.header div p#back').removeClass('hidden');
@@ -374,8 +388,29 @@ $(document).ready(function(){
 		});
 
 	$('div.word-container a.enter').on('click', function(){
-		$('div.final-word div.letter input').removeAttr('disabled');
+		if($('a.enter').attr('data-clicked') == "once"){
 
+			var times = $('div.final-word div.letter input').length;
+			var answer = "";
+			var egg = $("div.egg p").text();
+
+			for(var i = 0; i<times; i++){
+				answer = answer + $('div.final-word div.letter input').eq(i).val();
+				}
+
+			answer = answer.toUpperCase();
+			if(answer == egg){
+				//$('a.enter').html($("div.egg p").text());
+				//congrats
+				}
+			}
+		else{
+			$('div.final-word div.letter input').removeAttr('disabled');
+			$('div.word-container a.enter').html('Klaar');
+			$('div.word-container a.enter').attr('data-clicked', 'once');
+			$('div.word-container').on('click', 'a.enter[data-clicked="once"]' ,function(){
+				});
+			};
 		});
 
 	$('div.header div p#back').click(function(){
@@ -386,7 +421,6 @@ $(document).ready(function(){
 		$('div.background div.list-view').removeClass('hidden');
 
 		$('div.background.list.hidden').removeClass('hidden');
-		//$('div.level').css('display', 'unset');
 
 		$('div.header div p#home').removeClass('hidden');
 		$('div.header div p#back').addClass('hidden');
@@ -397,12 +431,103 @@ $(document).ready(function(){
 		hideSettings();
 		});
 
+	$(function() {
+	    var charLimit = 1;
+		var times = $(this).parent('div.final-word div.letter').index();
+	    var prev = $(this).parent("div.letter").prev("div.letter").children("input:not(disabled)");
+	    var nxt = $(this).parent("div.letter").next("div.letter");
+
+	    	$('div.final-word').on('keydown', 'div.letter input', function(e){ 
+
+	        var keys = [8, 9, /*16, 17, 18,*/ 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 144, 145];
+
+	        if (e.which == 8 && $(this).val().length == 0){
+	            $(this).parent("div.letter").prev("div.letter").children("input:not(disabled)").focus();
+	        	} 
+	        else if ($.inArray(e.which, keys) >= 0){
+	            return true;
+	        	}
+	        else if ($(this).val().length >= charLimit) {
+	            $(this).parent("div.letter").next("div.letter").children("input:not(disabled)").focus();
+	            return false;
+	        	}
+        	else if (e.shiftKey || e.which <= 58){
+	            return false;
+		        }
+
+	    }).on('keyup', 'div.letter input', function(){
+		if($(this).val().length == charLimit ){
+			function next(elem){
+				$(elem).parent("div.letter").next("div.letter").children("input").focus();
+				};
+
+   			var nxt = $(this).parent("div.letter").next("div.letter");
+
+			next(this);
+			if(nxt.children("input").is(":disabled")){
+				var eq = parseInt($(this).parent().index());
+				for(var i = 0; i<7; i++){
+
+					//$('a.enter').html(!$("div.letter").eq(eq+i).children("input").is(":disabled"));
+					if(!$("div.letter").eq(eq+i).children("input").is(":disabled")){return}
+					}
+				}
+			}	
+		});
+	});
+
 	$('div#settings p, div#settings svg').click(function(){
 		showSettings();
 		});
 
 	$('div.settings svg#close').click(function(){
 		$('div.settings').addClass('hidden');
+		});
+
+	$('div.level a').click(function(){
+		$('div.level p').toggleClass("hidden");
+		$('div.settings div:not(.level)').toggleClass("inactive-1");
+		$('div.settings div').removeClass("inactive-2");
+		$('div.name-change input').addClass("hidden");
+		});
+
+	$('div.level p').on("click", function(event){
+	    if(confirm("Als je van niveau verandert gaat al je huidige voortgang verloren.. \n\nWeet je zeker dat je door wilt gaan?")){
+			sessionStorage.level = $(this)[0].id;
+			location.reload();
+		    }
+		else {
+	        event.preventDefault();
+	        return false;
+		    }
+		});
+
+	function nameChange(){
+		$('div.level p').addClass("hidden");
+		$('div.name-change input').attr("placeholder", sessionStorage.username);
+		$('div.name-change input').toggleClass("hidden");
+		$('div.name-change svg').toggleClass("hidden");
+		$('div.settings div').removeClass("inactive-1");
+		$('div.settings div').toggleClass("inactive-2");
+		};
+
+	$('div.name-change a').click(function(){
+		nameChange();
+		});
+
+
+	$('div.name-change svg').click(function(){
+		sessionStorage.username = $('div.name-change input').val();
+		$('p#name').text(sessionStorage.username);
+		nameChange();
+		});
+
+	$('div.name-change input').on("keyup", function(e){
+		if(e.keyCode == 13){
+			sessionStorage.username = $('div.name-change input').val();
+			$('p#name').text(sessionStorage.username);
+			nameChange();
+			}
 		});
 
 	});
