@@ -283,10 +283,11 @@ $(document).ready(function(){
 			        		if($('div.features p[data-acquired="yes"]').length > 1){
 				        		$('div.features svg#up').removeClass('hidden');
 				        		$('div.features svg#down').removeClass('hidden');
-
-							    $('div.final-word div.letter input').css("border", "1.5px none orange");
-								$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
-					        	}		
+				        		if(sessionStorage.level != "Easy"){
+								    $('div.final-word div.letter input').css("border", "1.5px none orange");
+									$('div.final-word div.letter:nth-of-type('+index+') input').css("border", "1.5px solid orange");
+						        	}		
+						        }
     						$('span#clue2').text("Clue " + (rank+1));
 
 							if($('div.features p[data-acquired="yes"]').length >= $('div.features p[data-acquired="not-yet"]').length){
@@ -403,6 +404,8 @@ $(document).ready(function(){
 			if(answer == egg){
 				//$('a.enter').html($("div.egg p").text());
 				//congrats
+				closeMenu();
+				$('div.congratulations').removeClass('hidden');
 				}
 			}
 		else{

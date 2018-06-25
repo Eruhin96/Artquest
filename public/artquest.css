@@ -322,6 +322,28 @@ div.solution div.incorrect svg {
 	z-index: 2;
 	}
 
+div.congratulations {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	z-index: 2;
+	background: url('https://cdn-images-1.medium.com/max/2000/1*FkDE5F18xUdxS_2QqMZ4Xw.jpeg') center/cover no-repeat;
+	top: 0;
+	}
+
+div.congratulations div {
+	position: relative;
+	border: .5px none white;
+	top: 16vh;
+	width: 70vw;
+	left: 15vw;
+	text-align: center;
+	}
+
+div.congratulations div h1 {
+	font-weight: bold;
+	}
+
 div.word-container {
 	position:fixed;
 	bottom: -80vh;
