@@ -521,7 +521,7 @@ $(document).ready(function(){
 		if($('div.name-change input').val().length >0){
 			sessionStorage.username = $('div.name-change input').val();
 			$('p#name').text(sessionStorage.username);
-			$('div.name-change input').val();
+			$('div.name-change input').val('');
 			nameChange();
 			}
 		});
@@ -530,7 +530,7 @@ $(document).ready(function(){
 		if(e.keyCode == 13 && $('div.name-change input').val().length >0){
 			sessionStorage.username = $('div.name-change input').val();
 			$('p#name').text(sessionStorage.username);
-			$('div.name-change input').val();
+			$('div.name-change input').val('');
 			nameChange();
 			}
 		});
