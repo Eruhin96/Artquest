@@ -518,9 +518,11 @@ $(document).ready(function(){
 
 
 	$('div.name-change svg').click(function(){
-		sessionStorage.username = $('div.name-change input').val();
-		$('p#name').text(sessionStorage.username);
-		nameChange();
+		if($('div.name-change input').val().length >0)
+			sessionStorage.username = $('div.name-change input').val();
+			$('p#name').text(sessionStorage.username);
+			nameChange();
+			}
 		});
 
 	$('div.name-change input').on("keyup", function(e){
