@@ -48,10 +48,11 @@ div.header div#navigation p {
 	top: 8px;
 	border: .5px none white;	
 	cursor: pointer;
+	color: #A2ABAD;
 	}
 
 div.header div#navigation p#back {
-	color: #A2ABAD;
+	color: #FFFFFF;
 	}
 
 div.header div#navigation svg {
@@ -60,8 +61,8 @@ div.header div#navigation svg {
 	width: auto;
 	top: 8px;
 	position: relative;
-	fill: #A2ABAD;
-	color: #A2ABAD;
+	fill: #FFFFFF;
+	color: #FFFFFF;
 	}	
 
 .hidden {
@@ -74,15 +75,15 @@ div.header div#user svg {
 	width: auto;
 	top: 8px;
 	position: relative;
-	fill: #A2ABAD;
-	stroke: #A2ABAD;
+	fill: #FFFFFF;
+	stroke: #FFFFFF;
 	}	
 
 div.header div#user svg~p {
 	margin-top: 4px;
 	font-size: 10px;
 	cursor: pointer;
-	color: #A2ABAD;
+	color: #FFFFFF;
 	}
 
 div.background {
@@ -385,14 +386,15 @@ div.personal-info div#name svg {
 	height: 50px;
 	width: auto;
 	position: relative;
-	fill: white;
+	fill: #A2ABAD;
 	top: -4px;
 	}
 
 div.personal-info div#name p {
-	margin-top: 2px;
+	margin-top: -5px;
 	font-size: 13px;
 	cursor: default;
+	color: #A2ABAD;
 	}
 
 div.personal-info div:nth-of-type(2) {
@@ -411,7 +413,7 @@ div#settings p, div#settings svg {
 div#settings svg {
 	position: absolute;
 	height: 50px ;	
-	fill: #A2ABAD;
+	fill: #e4e6e7;
 	top: 0;
 	right: -3vw;
 	}
@@ -431,7 +433,7 @@ div.word-container div.features {
 div.features svg {
 	position: absolute;
 	right: -35px;
-	fill: #A2ABAD;
+	fill: #FFFFFF;
 	height: 15px;
 	cursor: pointer;
 	}
@@ -451,7 +453,7 @@ div.features span#clue2 {
 	top: -10px;
 	left: 0;
 	font-size: 15px;
-	color: #343537;
+	color: #D55140;
 	}
 
 div.word-container div.final-word {

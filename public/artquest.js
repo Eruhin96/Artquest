@@ -257,7 +257,7 @@ $(document).ready(function(){
 
 			$('div.clues').on('keyup', 'div.solution div.entry input', function (e) {
 				
-				//$(this).val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));		// Demo   
+				$(this).val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));		// Demo   
 			
 			    if(e.keyCode  == 13){
 
@@ -290,7 +290,7 @@ $(document).ready(function(){
 						        }
     						$('span#clue2').text("Clue " + (rank+1));
 
-							if($('div.features p[data-acquired="yes"]').length >= $('div.features p[data-acquired="not-yet"]').length){
+							if(sessionStorage.level == "Easy" || $('div.features p[data-acquired="yes"]').length >= $('div.features p[data-acquired="not-yet"]').length){
 								$('div.word-container a.enter').removeClass('hidden');
 								}
 					        },300);
@@ -428,6 +428,7 @@ $(document).ready(function(){
 
 		$('div.header div p#home').removeClass('hidden');
 		$('div.header div p#back').addClass('hidden');
+		$('div.congratulations').addClass('hidden');
 		});
 
 	$('div.header div svg, div.header div svg~p' ).click(function(){
@@ -493,10 +494,11 @@ $(document).ready(function(){
 		$('div.settings div:not(.level)').toggleClass("inactive-1");
 		$('div.settings div').removeClass("inactive-2");
 		$('div.name-change input').addClass("hidden");
+		$('div.name-change svg').addClass("hidden");
 		});
 
 	$('div.level p').on("click", function(event){
-	    if(confirm("Als je van niveau verandert gaat al je huidige voortgang verloren.. \n\nWeet je zeker dat je door wilt gaan?")){
+	    if(confirm("Als je van niveau verandert, gaat al je huidige voortgang verloren.. \n\nWeet je zeker dat je door wilt gaan?")){
 			sessionStorage.level = $(this)[0].id;
 			location.reload();
 		    }
@@ -536,6 +538,11 @@ $(document).ready(function(){
 			$('div.name-change input').val('');
 			nameChange();
 			}
+		});
+
+	$('p#home').click(function(){
+		closeMenu();
+		hideSettings();
 		});
 
 	});
