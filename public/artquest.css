@@ -586,13 +586,14 @@ div.settings div.inactive-2 {
 	}
 
 div.settings div input {
-	border: .5px solid #1A1919;
+	border: .5px none #1A1919;
 	position: relative;
 	top: 80px;
 	width: 45vw;
 	font-size: 18px;
 	padding: 10px 10px;
 	left: -5vw;
+	border-radius: 5px;
 	}
 
 div.settings div.name-change svg {
@@ -600,7 +601,7 @@ div.settings div.name-change svg {
 	border: .5px none red;
 	top: 82px;
 	width: auto;
-	right: .5vw;
+	right: 1vw;
 	height: 40px;
 	cursor: pointer;
 	fill: #D55140;

@@ -524,7 +524,7 @@ $(document).ready(function(){
 		});
 
 	$('div.name-change input').on("keyup", function(e){
-		if(e.keyCode == 13){
+		if(e.keyCode == 13 && $('div.name-change input').val().length >0){
 			sessionStorage.username = $('div.name-change input').val();
 			$('p#name').text(sessionStorage.username);
 			nameChange();
