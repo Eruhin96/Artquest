@@ -1,13 +1,14 @@
 $(document).ready(function(){
-	// Initialize Firebase
+	
+	//Initialize Firebase
 	var config = {
-	apiKey: "AIzaSyD5NvvAb5I3kXjRgg-EgXLSDwr7BE-wIRs",
-	authDomain: "artquest-3935e.firebaseapp.com",
-	databaseURL: "https://artquest-3935e.firebaseio.com",
-	projectId: "artquest-3935e",
-	storageBucket: "artquest-3935e.appspot.com",
-	messagingSenderId: "1034727271143"
-	};
+	    apiKey: "AIzaSyC2zvJY8KAcoyGtK-EaEQO1ccfZXutskNg",
+	    authDomain: "artquest-3935e.firebaseapp.com",
+	    databaseURL: "https://artquest-3935e.firebaseio.com",
+	    projectId: "artquest-3935e",
+	    storageBucket: "artquest-3935e.appspot.com",
+	    messagingSenderId: "1034727271143"
+		};
 	firebase.initializeApp(config);
 
 	$('p#name').text(sessionStorage.username);
