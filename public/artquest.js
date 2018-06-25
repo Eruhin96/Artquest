@@ -518,7 +518,7 @@ $(document).ready(function(){
 
 
 	$('div.name-change svg').click(function(){
-		if($('div.name-change input').val().length >0)
+		if($('div.name-change input').val().length >0){
 			sessionStorage.username = $('div.name-change input').val();
 			$('p#name').text(sessionStorage.username);
 			nameChange();
