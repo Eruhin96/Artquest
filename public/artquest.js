@@ -259,7 +259,7 @@ $(document).ready(function(){
 
 			$('div.clues').on('keyup', 'div.solution div.entry input', function (e) {
 				
-				$(this).val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));		// Demo   
+				if($(this).val() == " demo"){$(this).val($(this).parent('div.solution div.entry').children().children('div.correct svg').attr('data-correct'));}		// Demo   
 			
 			    if(e.keyCode  == 13){
 
