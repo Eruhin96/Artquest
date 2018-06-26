@@ -37,6 +37,8 @@ $(document).ready(function(){
 		}
 
 	$('div.final-word').append('<div class="egg hidden"><p>'+egg+'</p></div>');
+	$('div.final-word').append('<p class="sorry hidden">Helaas, het gevonden woord is niet juist.<br/>Probeer het nog een keer!</p>');
+
 
 
 	    snapshot.forEach(function(childSnapshot) {
@@ -406,6 +408,9 @@ $(document).ready(function(){
 				//congrats
 				closeMenu();
 				$('div.congratulations').removeClass('hidden');
+				}
+			else{ 
+				$('p.sorry').removeClass('hidden');
 				}
 			}
 		else{
